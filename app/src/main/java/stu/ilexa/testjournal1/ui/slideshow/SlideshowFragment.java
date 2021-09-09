@@ -33,11 +33,6 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        //DaysButtonListener daysButtonListener = new DaysButtonListener(binding,slideshowViewModel);
-        //WeekButtonListener weekButtonListener = new WeekButtonListener(binding,slideshowViewModel);
-
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setButtons();
 
         final TextView textViewSubjectSlot1 = binding.textViewSubjectSlot1;
         final TextView textViewSubjectSlot2 = binding.textViewSubjectSlot2;
@@ -45,6 +40,7 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         final TextView textViewSubjectSlot4 = binding.textViewSubjectSlot4;
         final TextView textViewSubjectSlot5 = binding.textViewSubjectSlot5;
         final TextView textViewSubjectSlot6 = binding.textViewSubjectSlot6;
+        final TextView textViewWeekNumber = binding.textViewWeekNumber;
 
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String[]>() {
             @Override
@@ -55,8 +51,18 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 textViewSubjectSlot4.setText(s[3]);
                 textViewSubjectSlot5.setText(s[4]);
                 textViewSubjectSlot6.setText(s[5]);
+                textViewWeekNumber.setText("Неделя "+(slideshowViewModel.getSelectedWeek()+1));
             }
         });
+
+        binding.ButtonWeekDay1.setOnClickListener(this);
+        binding.ButtonWeekDay2.setOnClickListener(this);
+        binding.ButtonWeekDay3.setOnClickListener(this);
+        binding.ButtonWeekDay4.setOnClickListener(this);
+        binding.ButtonWeekDay5.setOnClickListener(this);
+        binding.ButtonWeekDay6.setOnClickListener(this);
+        binding.imageButtonWeekNext.setOnClickListener(this);
+        binding.imageButtonWeekPrevious.setOnClickListener(this);
 
         return root;
     }

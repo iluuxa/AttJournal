@@ -65,34 +65,7 @@ public class MainActivity extends AppCompatActivity {
         //Log.d(TAG, getSupportFragmentManager().getFragments().get(0).getChildFragmentManager().getFragments().toString());
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Log.d(TAG, getSupportFragmentManager().getFragments().get(0).getChildFragmentManager().getFragments().toString());
-    }
 
-    public void setButtons(){
-        Log.d(TAG, getSupportFragmentManager().getFragments().get(0).getChildFragmentManager().getFragments().get(0).getActivity().toString());
-        SlideshowFragment slideshowFragment = (SlideshowFragment) getSupportFragmentManager().getFragments().get(0).getChildFragmentManager().getFragments().get(0);
-        FragmentSlideshowBinding fragmentSlideshowBinding = slideshowFragment.getBinding();
-        fragmentSlideshowBinding.ButtonWeekDay1.setOnClickListener(slideshowFragment);
-        fragmentSlideshowBinding.ButtonWeekDay2.setOnClickListener(slideshowFragment);
-        fragmentSlideshowBinding.ButtonWeekDay3.setOnClickListener(slideshowFragment);
-        fragmentSlideshowBinding.ButtonWeekDay4.setOnClickListener(slideshowFragment);
-        fragmentSlideshowBinding.ButtonWeekDay5.setOnClickListener(slideshowFragment);
-        fragmentSlideshowBinding.ButtonWeekDay6.setOnClickListener(slideshowFragment);
-        fragmentSlideshowBinding.imageButtonWeekNext.setOnClickListener(slideshowFragment);
-        fragmentSlideshowBinding.imageButtonWeekPrevious.setOnClickListener(slideshowFragment);
-
-        /*this.findViewById(R.id.imageButtonWeekNext).setOnClickListener(slideshowFragment);
-        this.findViewById(R.id.imageButtonWeekPrevious).setOnClickListener(slideshowFragment);
-        this.findViewById(R.id.ButtonWeekDay1).setOnClickListener(slideshowFragment);
-        this.findViewById(R.id.ButtonWeekDay2).setOnClickListener(slideshowFragment);
-        this.findViewById(R.id.ButtonWeekDay3).setOnClickListener(slideshowFragment);
-        this.findViewById(R.id.ButtonWeekDay4).setOnClickListener(slideshowFragment);
-        this.findViewById(R.id.ButtonWeekDay5).setOnClickListener(slideshowFragment);
-        this.findViewById(R.id.ButtonWeekDay6).setOnClickListener(slideshowFragment);*/
-    }
 
 
     @Override
