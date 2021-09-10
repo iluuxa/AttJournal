@@ -1,4 +1,4 @@
-package stu.ilexa.testjournal1.ui.slideshow;
+package stu.ilexa.testjournal1.ui.schedule;
 
 public enum Days {
     Monday,

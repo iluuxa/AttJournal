@@ -1,4 +1,4 @@
-package stu.ilexa.testjournal1.ui.gallery;
+package stu.ilexa.testjournal1.ui.students;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import stu.ilexa.testjournal1.R;
-import stu.ilexa.testjournal1.databinding.FragmentGalleryBinding;
+import stu.ilexa.testjournal1.databinding.FragmentStudentsBinding;
 
-public class GalleryFragment extends Fragment {
+public class StudentsFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
-    private FragmentGalleryBinding binding;
+    private StudentsViewModel studentsViewModel;
+    private FragmentStudentsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        studentsViewModel =
+                new ViewModelProvider(this).get(StudentsViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentStudentsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        studentsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

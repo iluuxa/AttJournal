@@ -10,8 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestJournal1">
         <activity
+            android:name=".SubjectChange"
+            android:parentActivityName=".MainActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:launchMode="singleTop"
             android:label="@string/app_name"
             android:theme="@style/Theme.TestJournal1.NoActionBar">
             <intent-filter>

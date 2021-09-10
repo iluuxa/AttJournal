@@ -1,16 +1,16 @@
-package stu.ilexa.testjournal1.ui.gallery;
+package stu.ilexa.testjournal1.ui.students;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class StudentsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public StudentsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is students fragment");
     }
 
     public LiveData<String> getText() {

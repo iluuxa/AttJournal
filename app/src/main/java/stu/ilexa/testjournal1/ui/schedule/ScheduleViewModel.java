@@ -1,4 +1,4 @@
-package stu.ilexa.testjournal1.ui.slideshow;
+package stu.ilexa.testjournal1.ui.schedule;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel;
 
 import stu.ilexa.testjournal1.Schedule;
 
-public class SlideshowViewModel extends ViewModel {
+public class ScheduleViewModel extends ViewModel {
 
     private MutableLiveData<String[]> mText;
     private int selectedDay;
     private int selectedWeek;
 
-    public SlideshowViewModel() {
+    public ScheduleViewModel() {
         mText = new MutableLiveData<>();
         Schedule.testInit();
         //String[] displayedSubjects = Schedule.schedule[selectedWeek][selectedDay];

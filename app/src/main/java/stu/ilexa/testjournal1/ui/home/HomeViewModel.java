@@ -1,12 +1,8 @@
 package stu.ilexa.testjournal1.ui.home;
 
-import android.app.Activity;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import stu.ilexa.testjournal1.ui.slideshow.SlideshowViewModel;
 
 public class HomeViewModel extends ViewModel {
 

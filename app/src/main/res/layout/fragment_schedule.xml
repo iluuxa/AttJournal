@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.slideshow.SlideshowFragment">
-
+    tools:context=".ui.schedule.ScheduleFragment">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -24,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:tag="imageButtonWeekPrevious"
                 android:src="@android:drawable/ic_media_previous" />
 
             <TextView
@@ -41,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:tag="imageButtonWeekNext"
                 android:src="@android:drawable/ic_media_play" />
 
         </LinearLayout>
@@ -59,6 +63,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:src="@android:drawable/radiobutton_off_background"
+                android:tag="buttonWeekDay1"
                 android:text="@string/day_of_week_1" />
 
             <Button
@@ -69,6 +74,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:src="@android:drawable/radiobutton_off_background"
+                android:tag="buttonWeekDay2"
                 android:text="@string/day_of_week_2" />
 
             <Button
@@ -79,6 +85,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:src="@android:drawable/radiobutton_off_background"
+                android:tag="buttonWeekDay3"
                 android:text="@string/day_of_week_3" />
 
             <Button
@@ -89,6 +96,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:src="@android:drawable/radiobutton_off_background"
+                android:tag="buttonWeekDay4"
                 android:text="@string/day_of_week_4" />
 
             <Button
@@ -99,6 +107,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:src="@android:drawable/radiobutton_off_background"
+                android:tag="buttonWeekDay5"
                 android:text="@string/day_of_week_5" />
 
             <Button
@@ -109,6 +118,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:src="@android:drawable/radiobutton_off_background"
+                android:tag="buttonWeekDay6"
                 android:text="@string/day_of_week_6" />
         </LinearLayout>
 
@@ -159,6 +169,7 @@
                     android:id="@+id/textViewSubjectSlot1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="TextView" />
 
@@ -206,6 +217,7 @@
                     android:id="@+id/textViewSubjectSlot2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="TextView" />
 
@@ -253,6 +265,7 @@
                     android:id="@+id/textViewSubjectSlot3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="TextView" />
 
@@ -300,6 +313,7 @@
                     android:id="@+id/textViewSubjectSlot4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="TextView" />
 
@@ -347,6 +361,7 @@
                     android:id="@+id/textViewSubjectSlot5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="TextView" />
 
@@ -394,6 +409,7 @@
                     android:id="@+id/textViewSubjectSlot6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:text="TextView" />
 
@@ -402,6 +418,18 @@
         </LinearLayout>
 
     </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/fab_margin"
+            android:tag="addSubjectFAB"
+            android:src="@android:drawable/ic_input_add" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
