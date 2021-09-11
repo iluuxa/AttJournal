@@ -20,8 +20,10 @@
     <string name="week">Неделя</string>
 
     <string name="subject_name_input">Введите название предмета</string>
+    <string name="subject_type_input">тип</string>
     <string name="all_weeks">Все</string>
     <string name="odd_weeks">Нечёт</string>
     <string name="even_weeks">Чёт</string>
     <string name="clear_weeks">Очистить</string>
+    <string name="subject_confirm">Добавить</string>
 </resources>

@@ -10,7 +10,8 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,87 +19,40 @@
             android:orientation="vertical">
 
             <LinearLayout
-                style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/ButtonWeekDay1"
-                    style="?android:attr/buttonBarButtonStyle"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:src="@android:drawable/radiobutton_off_background"
-                    android:tag="buttonWeekDay1"
-                    android:text="@string/day_of_week_1" />
+                    android:hint="@string/subject_name_input">
 
-                <Button
-                    android:id="@+id/ButtonWeekDay2"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/radiobutton_off_background"
-                    android:tag="buttonWeekDay2"
-                    android:text="@string/day_of_week_2" />
+                    <AutoCompleteTextView
+                        android:id="@+id/subjectInputField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textAutoComplete" />
 
-                <Button
-                    android:id="@+id/ButtonWeekDay3"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/radiobutton_off_background"
-                    android:tag="buttonWeekDay3"
-                    android:text="@string/day_of_week_3" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/ButtonWeekDay4"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/radiobutton_off_background"
-                    android:tag="buttonWeekDay4"
-                    android:text="@string/day_of_week_4" />
-
-                <Button
-                    android:id="@+id/ButtonWeekDay5"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/radiobutton_off_background"
-                    android:tag="buttonWeekDay5"
-                    android:text="@string/day_of_week_5" />
-
-                <Button
-                    android:id="@+id/ButtonWeekDay6"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:src="@android:drawable/radiobutton_off_background"
-                    android:tag="buttonWeekDay6"
-                    android:text="@string/day_of_week_6" />
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/subject_name_input" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_weight="4"
+                    android:hint="@string/subject_type_input">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/subjectTypeInputField"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <LinearLayout
                 style='"style="?android:attr/buttonBarStyle"'
@@ -113,10 +67,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:tag="subjectAddAll"
                     android:text="@string/all_weeks" />
 
                 <Button
                     android:id="@+id/button2"
+                    android:tag="subjectAddEven"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,6 +81,7 @@
 
                 <Button
                     android:id="@+id/button3"
+                    android:tag="subjectAddOdd"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,6 +90,7 @@
 
                 <Button
                     android:id="@+id/button5"
+                    android:tag="subjectAddClear"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -142,7 +100,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -152,6 +110,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox4"
+                        android:tag="subjectAddWeek1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -159,6 +118,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox5"
+                        android:tag="subjectAddWeek2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -166,6 +126,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox6"
+                        android:tag="subjectAddWeek3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -173,6 +134,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox7"
+                        android:tag="subjectAddWeek4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -180,6 +142,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox8"
+                        android:tag="subjectAddWeek5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -187,6 +150,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox9"
+                        android:tag="subjectAddWeek6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -194,6 +158,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox10"
+                        android:tag="subjectAddWeek7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -201,6 +166,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox11"
+                        android:tag="subjectAddWeek8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -214,6 +180,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox12"
+                        android:tag="subjectAddWeek9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -221,6 +188,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox13"
+                        android:tag="subjectAddWeek10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -228,6 +196,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox14"
+                        android:tag="subjectAddWeek11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -235,6 +204,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox15"
+                        android:tag="subjectAddWeek12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -242,6 +212,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox16"
+                        android:tag="subjectAddWeek13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -249,6 +220,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox17"
+                        android:tag="subjectAddWeek14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -256,6 +228,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox18"
+                        android:tag="subjectAddWeek15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -263,6 +236,7 @@
 
                     <CheckBox
                         android:id="@+id/checkBox19"
+                        android:tag="subjectAddWeek16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -272,7 +246,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
@@ -287,10 +261,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="@string/day_of_week_1" />
 
                     <Button
                         android:id="@+id/button17"
+                        android:tag="subjectAddDay1Class1"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -300,6 +276,7 @@
 
                     <Button
                         android:id="@+id/button18"
+                        android:tag="subjectAddDay1Class2"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -309,6 +286,7 @@
 
                     <Button
                         android:id="@+id/button19"
+                        android:tag="subjectAddDay1Class3"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -318,6 +296,7 @@
 
                     <Button
                         android:id="@+id/button20"
+                        android:tag="subjectAddDay1Class4"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -327,6 +306,7 @@
 
                     <Button
                         android:id="@+id/button21"
+                        android:tag="subjectAddDay1Class5"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -336,6 +316,7 @@
 
                     <Button
                         android:id="@+id/button22"
+                        android:tag="subjectAddDay1Class6"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -355,10 +336,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="@string/day_of_week_2" />
 
                     <Button
                         android:id="@+id/button29"
+                        android:tag="subjectAddDay2Class1"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -368,6 +351,7 @@
 
                     <Button
                         android:id="@+id/button30"
+                        android:tag="subjectAddDay2Class2"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -377,6 +361,7 @@
 
                     <Button
                         android:id="@+id/button31"
+                        android:tag="subjectAddDay2Class3"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -386,6 +371,7 @@
 
                     <Button
                         android:id="@+id/button32"
+                        android:tag="subjectAddDay2Class4"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -395,6 +381,7 @@
 
                     <Button
                         android:id="@+id/button33"
+                        android:tag="subjectAddDay2Class5"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -404,6 +391,7 @@
 
                     <Button
                         android:id="@+id/button34"
+                        android:tag="subjectAddDay2Class6"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -423,10 +411,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="@string/day_of_week_3" />
 
                     <Button
                         android:id="@+id/button35"
+                        android:tag="subjectAddDay3Class1"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -436,6 +426,7 @@
 
                     <Button
                         android:id="@+id/button36"
+                        android:tag="subjectAddDay3Class2"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -445,6 +436,7 @@
 
                     <Button
                         android:id="@+id/button37"
+                        android:tag="subjectAddDay3Class3"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -454,6 +446,7 @@
 
                     <Button
                         android:id="@+id/button38"
+                        android:tag="subjectAddDay3Class4"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -463,6 +456,7 @@
 
                     <Button
                         android:id="@+id/button39"
+                        android:tag="subjectAddDay3Class5"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -472,6 +466,7 @@
 
                     <Button
                         android:id="@+id/button40"
+                        android:tag="subjectAddDay3Class6"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -491,10 +486,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="@string/day_of_week_4" />
 
                     <Button
                         android:id="@+id/button41"
+                        android:tag="subjectAddDay4Class1"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -504,6 +501,7 @@
 
                     <Button
                         android:id="@+id/button42"
+                        android:tag="subjectAddDay4Class2"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -513,6 +511,7 @@
 
                     <Button
                         android:id="@+id/button43"
+                        android:tag="subjectAddDay4Class3"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -522,6 +521,7 @@
 
                     <Button
                         android:id="@+id/button44"
+                        android:tag="subjectAddDay4Class4"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -531,6 +531,7 @@
 
                     <Button
                         android:id="@+id/button45"
+                        android:tag="subjectAddDay4Class5"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -540,6 +541,7 @@
 
                     <Button
                         android:id="@+id/button46"
+                        android:tag="subjectAddDay4Class6"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -559,10 +561,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="@string/day_of_week_6" />
 
                     <Button
                         android:id="@+id/button47"
+                        android:tag="subjectAddDay5Class1"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -572,6 +576,7 @@
 
                     <Button
                         android:id="@+id/button48"
+                        android:tag="subjectAddDay5Class2"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -581,6 +586,7 @@
 
                     <Button
                         android:id="@+id/button49"
+                        android:tag="subjectAddDay5Class3"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -590,6 +596,7 @@
 
                     <Button
                         android:id="@+id/button50"
+                        android:tag="subjectAddDay5Class4"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -599,6 +606,7 @@
 
                     <Button
                         android:id="@+id/button51"
+                        android:tag="subjectAddDay5Class5"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -608,6 +616,7 @@
 
                     <Button
                         android:id="@+id/button52"
+                        android:tag="subjectAddDay5Class6"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -627,10 +636,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textAlignment="center"
                         android:text="@string/day_of_week_6" />
 
                     <Button
                         android:id="@+id/button53"
+                        android:tag="subjectAddDay6Class1"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -640,6 +651,7 @@
 
                     <Button
                         android:id="@+id/button54"
+                        android:tag="subjectAddDay6Class2"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -649,6 +661,7 @@
 
                     <Button
                         android:id="@+id/button55"
+                        android:tag="subjectAddDay6Class3"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -658,6 +671,7 @@
 
                     <Button
                         android:id="@+id/button56"
+                        android:tag="subjectAddDay6Class4"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -667,6 +681,7 @@
 
                     <Button
                         android:id="@+id/button57"
+                        android:tag="subjectAddDay6Class5"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -676,6 +691,7 @@
 
                     <Button
                         android:id="@+id/button58"
+                        android:tag="subjectAddDay6Class6"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -686,12 +702,21 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button60"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="bottom"
-                android:text="Button" />
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button60"
+                    android:tag="subjectAddConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="@string/subject_confirm" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

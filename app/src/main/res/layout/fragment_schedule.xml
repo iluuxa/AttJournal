@@ -8,416 +8,416 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/imageButtonWeekPrevious"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:tag="imageButtonWeekPrevious"
-                android:src="@android:drawable/ic_media_previous" />
-
-            <TextView
-                android:id="@+id/textViewWeekNumber"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="@string/week" />
-
-            <ImageButton
-                android:id="@+id/imageButtonWeekNext"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:tag="imageButtonWeekNext"
-                android:src="@android:drawable/ic_media_play" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/ButtonWeekDay1"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:tag="buttonWeekDay1"
-                android:text="@string/day_of_week_1" />
-
-            <Button
-                android:id="@+id/ButtonWeekDay2"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:tag="buttonWeekDay2"
-                android:text="@string/day_of_week_2" />
-
-            <Button
-                android:id="@+id/ButtonWeekDay3"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:tag="buttonWeekDay3"
-                android:text="@string/day_of_week_3" />
-
-            <Button
-                android:id="@+id/ButtonWeekDay4"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:tag="buttonWeekDay4"
-                android:text="@string/day_of_week_4" />
-
-            <Button
-                android:id="@+id/ButtonWeekDay5"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:tag="buttonWeekDay5"
-                android:text="@string/day_of_week_5" />
-
-            <Button
-                android:id="@+id/ButtonWeekDay6"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:tag="buttonWeekDay6"
-                android:text="@string/day_of_week_6" />
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textViewLessonNumber1"
+                <ImageButton
+                    android:id="@+id/imageButtonWeekPrevious"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textViewLessonStart1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textViewLessonEnd1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="bottom"
-                        android:text="TextView" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textViewSubjectSlot1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:tag="imageButtonWeekPrevious"
+                    android:src="@android:drawable/ic_media_previous" />
 
+                <TextView
+                    android:id="@+id/textViewWeekNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/week" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonWeekNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:tag="imageButtonWeekNext"
+                    android:src="@android:drawable/ic_media_play" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/ButtonWeekDay1"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/radiobutton_off_background"
+                    android:tag="buttonWeekDay1"
+                    android:text="@string/day_of_week_1" />
+
+                <Button
+                    android:id="@+id/ButtonWeekDay2"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/radiobutton_off_background"
+                    android:tag="buttonWeekDay2"
+                    android:text="@string/day_of_week_2" />
+
+                <Button
+                    android:id="@+id/ButtonWeekDay3"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/radiobutton_off_background"
+                    android:tag="buttonWeekDay3"
+                    android:text="@string/day_of_week_3" />
+
+                <Button
+                    android:id="@+id/ButtonWeekDay4"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/radiobutton_off_background"
+                    android:tag="buttonWeekDay4"
+                    android:text="@string/day_of_week_4" />
+
+                <Button
+                    android:id="@+id/ButtonWeekDay5"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/radiobutton_off_background"
+                    android:tag="buttonWeekDay5"
+                    android:text="@string/day_of_week_5" />
+
+                <Button
+                    android:id="@+id/ButtonWeekDay6"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/radiobutton_off_background"
+                    android:tag="buttonWeekDay6"
+                    android:text="@string/day_of_week_6" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewLessonNumber2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold" />
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewLessonStart2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textViewLessonEnd2"
+                        android:id="@+id/textViewLessonNumber1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="bottom"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewLessonStart1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textViewLessonEnd1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:text="TextView" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewSubjectSlot1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
                         android:text="TextView" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textViewSubjectSlot2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:text="TextView" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewLessonNumber3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="3"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewLessonStart3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textViewLessonEnd3"
+                        android:id="@+id/textViewLessonNumber2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="bottom"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewLessonStart2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textViewLessonEnd2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:text="TextView" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewSubjectSlot2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
                         android:text="TextView" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textViewSubjectSlot3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:text="TextView" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewLessonNumber4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="4"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewLessonStart4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textViewLessonEnd4"
+                        android:id="@+id/textViewLessonNumber3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="bottom"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewLessonStart3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textViewLessonEnd3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:text="TextView" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewSubjectSlot3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
                         android:text="TextView" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textViewSubjectSlot4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:text="TextView" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewLessonNumber5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="5"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewLessonStart5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textViewLessonEnd5"
+                        android:id="@+id/textViewLessonNumber4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="bottom"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewLessonStart4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textViewLessonEnd4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:text="TextView" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewSubjectSlot4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
                         android:text="TextView" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textViewSubjectSlot5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:text="TextView" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewLessonNumber6"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center"
-                    android:text="6"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewLessonStart6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textViewLessonEnd6"
+                        android:id="@+id/textViewLessonNumber5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="bottom"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewLessonStart5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textViewLessonEnd5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:text="TextView" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewSubjectSlot5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
                         android:text="TextView" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textViewSubjectSlot6"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textViewLessonNumber6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="6"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewLessonStart6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textViewLessonEnd6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:text="TextView" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewSubjectSlot6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

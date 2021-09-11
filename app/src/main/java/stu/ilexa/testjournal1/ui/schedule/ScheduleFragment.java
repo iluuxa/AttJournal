@@ -13,6 +13,9 @@ import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import stu.ilexa.testjournal1.MainActivity;
+import stu.ilexa.testjournal1.Schedule;
+import stu.ilexa.testjournal1.Subject;
 import stu.ilexa.testjournal1.SubjectChange;
 import stu.ilexa.testjournal1.databinding.FragmentScheduleBinding;
 
@@ -39,12 +42,12 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
         final TextView textViewWeekNumber = binding.textViewWeekNumber;
 
         scheduleViewModel.getText().observe(getViewLifecycleOwner(), s -> {
-            textViewSubjectSlot1.setText(s[0]);
-            textViewSubjectSlot2.setText(s[1]);
-            textViewSubjectSlot3.setText(s[2]);
-            textViewSubjectSlot4.setText(s[3]);
-            textViewSubjectSlot5.setText(s[4]);
-            textViewSubjectSlot6.setText(s[5]);
+            textViewSubjectSlot1.setText(s[0].getName());
+            textViewSubjectSlot2.setText(s[1].getName());
+            textViewSubjectSlot3.setText(s[2].getName());
+            textViewSubjectSlot4.setText(s[3].getName());
+            textViewSubjectSlot5.setText(s[4].getName());
+            textViewSubjectSlot6.setText(s[5].getName());
             String concatenation = "Неделя "+(scheduleViewModel.getSelectedWeek()+1);
             textViewWeekNumber.setText(concatenation);
         });
@@ -57,6 +60,7 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
         binding.ButtonWeekDay6.setOnClickListener(this);
         binding.imageButtonWeekNext.setOnClickListener(this);
         binding.imageButtonWeekPrevious.setOnClickListener(this);
+        binding.fab.setOnClickListener(this);
 
         return root;
     }
@@ -91,6 +95,7 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
                 scheduleViewModel.decrementSelectedWeek();
                 break;
             case "addSubjectFAB":
+                Log.d(TAG, "onClick: FAB");
                 Intent intent = new Intent(getActivity(), SubjectChange.class);
                 startActivity(intent);
                 break;

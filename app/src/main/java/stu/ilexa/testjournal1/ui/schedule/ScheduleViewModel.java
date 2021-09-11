@@ -5,10 +5,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import stu.ilexa.testjournal1.Schedule;
+import stu.ilexa.testjournal1.Subject;
 
 public class ScheduleViewModel extends ViewModel {
 
-    private MutableLiveData<String[]> mText;
+    private MutableLiveData<Subject[]> mText;
     private int selectedDay;
     private int selectedWeek;
 
@@ -34,7 +35,7 @@ public class ScheduleViewModel extends ViewModel {
             mText.setValue(Schedule.schedule[selectedWeek][selectedDay]);}
     }
 
-    public LiveData<String[]> getText() {
+    public LiveData<Subject[]> getText() {
         return mText;
     }
 
