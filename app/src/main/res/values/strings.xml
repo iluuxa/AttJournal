@@ -20,10 +20,13 @@
     <string name="week">Неделя</string>
 
     <string name="subject_name_input">Введите название предмета</string>
-    <string name="subject_type_input">тип</string>
+    <string name="subject_type_input"></string>
     <string name="all_weeks">Все</string>
     <string name="odd_weeks">Нечёт</string>
     <string name="even_weeks">Чёт</string>
     <string name="clear_weeks">Очистить</string>
     <string name="subject_confirm">Добавить</string>
+    <string name="default_type_input">пр</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -26,33 +26,43 @@ public class Schedule{
 
     public static void testInit(){
         eraseSchedule();
+        Subject subj1=new Subject("Основы сетевых технологий");
+        Subject subj2=new Subject("Тестирование и верификация программного обеспечения");
+        Subject subj3=new Subject("Интерфейсы прикладного программирования");
+        Subject subj4=new Subject("Моделирование бизнес-процессов");
+        Subject subj5=new Subject("Технологические основы интернета вещей");
+        Subject subj6=new Subject("Разработка серверных частей интернет ресурсов");
+        Subject subj7=new Subject("Моделирование сред и разработка приложений");
+        Subject subj8=new Subject("Разработка баз данных");
+        Subject subj9=new Subject("Архитектура клиент-серверных приложений");
+        Subject subj10=new Subject("Безопасность жизнедеятельности");
         for (int i = 0;i<weekCount;i++){
-            schedule[i][0][0]=new Subject("Основы сетевых технологий");
-            schedule[i][1][4]=new Subject("Тестирование и верификация программного обеспечения");
-            schedule[i][1][5]=new Subject("Интерфейсы прикладного программирования");
-            schedule[i][2][4]=new Subject("Моделирование бизнес-процессов");
-            schedule[i][2][5]=schedule[i][2][4];
-            schedule[i][4][2]=new Subject("Технологические основы интернета вещей");
-            schedule[i][5][2]=new Subject("Разработка серверных частей интернет ресурсов");
-            schedule[i][5][3]=new Subject("Моделирование сред и разработка приложений");
-            schedule[i][5][5]=new Subject("Разработка баз данных");
+            schedule[i][0][0]=subj1;
+            schedule[i][1][4]=subj2;
+            schedule[i][1][5]=subj3;
+            schedule[i][2][4]=subj4;
+            schedule[i][2][5]=subj4;
+            schedule[i][4][2]=subj5;
+            schedule[i][5][2]=subj6;
+            schedule[i][5][3]=subj7;
+            schedule[i][5][5]=subj8;
             if ((i+1)%2==0){
-                schedule[i][0][1]= schedule[i][2][4];
-                schedule[i][0][2]= schedule[i][5][5];
-                schedule[i][0][3]= schedule[i][1][4];
-                schedule[i][2][3]=new Subject("Архитектура клиент-серверных приложений");
-                schedule[i][3][0]=schedule[i][5][3];
-                schedule[i][3][1]= schedule[i][2][3];
-                schedule[i][3][2]= schedule[i][1][5];
-                schedule[i][5][4]= schedule[i][5][5];
-                schedule[i][5][1]=schedule[i][5][2];
+                schedule[i][0][1]= subj4;
+                schedule[i][0][2]= subj8;
+                schedule[i][0][3]= subj2;
+                schedule[i][2][3]= subj9;
+                schedule[i][3][0]= subj7;
+                schedule[i][3][1]= subj9;
+                schedule[i][3][2]= subj3;
+                schedule[i][5][4]= subj8;
+                schedule[i][5][1]= subj6;
             }
             else{
-                schedule[i][0][1]=schedule[i][4][2];
-                schedule[i][0][2]=new Subject("Безопасность жизнедеятельности");
-                schedule[i][1][3]=schedule[i][0][0];
-                schedule[i][3][0]=schedule[i][5][2];
-                schedule[i][5][4]= schedule[i][5][3];
+                schedule[i][0][1]=subj5;
+                schedule[i][0][2]=subj10;
+                schedule[i][1][3]=subj1;
+                schedule[i][3][0]=subj6;
+                schedule[i][5][4]= subj8;
             }
         }
     }
