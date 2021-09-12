@@ -9,9 +9,9 @@ public class Student {
     String patronymic;
 
 
-    public Student(String firstName, String lastName, String patronymic) {
-        this.firstName = firstName;
+    public Student(String lastName, String firstName,  String patronymic) {
         this.lastName = lastName;
+        this.firstName = firstName;
         this.patronymic = patronymic;
     }
 
