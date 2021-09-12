@@ -1,37 +1,29 @@
 package stu.ilexa.testjournal1.ui.change;
 
-import androidx.core.app.NavUtils;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.ColorSpace;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NavUtils;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import java.util.Arrays;
+import java.util.TreeSet;
 
 import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.Schedule;
 import stu.ilexa.testjournal1.Subject;
-import stu.ilexa.testjournal1.databinding.FragmentScheduleBinding;
 import stu.ilexa.testjournal1.databinding.SubjectChangeFragmentBinding;
 
 public class SubjectChangeFragment extends Fragment implements View.OnClickListener {
@@ -39,17 +31,22 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
     private SubjectChangeViewModel subjectChangeViewModel;
     private SubjectChangeFragmentBinding binding;
     private static final String TAG ="SubjectChangeFragment";
+    int foundSubject = -1;
+    String changedSubject;
 
     public static SubjectChangeFragment newInstance() {
         return new SubjectChangeFragment();
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.subject_change_fragment, container, false);
+        //Log.d(TAG, "onCreateView: "+SubjectChangeViewModel.class.toString());
         subjectChangeViewModel = new ViewModelProvider(this).get(SubjectChangeViewModel.class);
+        //subjectChangeViewModel = new ViewModelProvider(requireActivity()).get(SubjectChangeViewModel.class);
+        //subjectChangeViewModel=new ViewModelProvider(requireActivity(),getDefaultViewModelProviderFactory()).get(SubjectChangeViewModel.class);
         binding = SubjectChangeFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -58,12 +55,13 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
         for (int i = 0; i < objects.length; i++) {
             list[i]=((Subject)(objects[i])).getName();
         }
-        ArrayAdapter<String> subjectsAdapter = new ArrayAdapter<String>(root.getContext(),
+        ArrayAdapter<String> subjectsAdapter = new ArrayAdapter<>(root.getContext(),
                 android.R.layout.simple_list_item_1,
                 list);
         binding.subjectInputField.setAdapter(subjectsAdapter);
-        String[] type = {"пр","лк"};
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_list_item_1,type);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(root.getContext(),
+                android.R.layout.simple_list_item_1,
+                new String[] {"пр","лк"});
         binding.subjectTypeInputField.setAdapter(typeAdapter);
         binding.subjectInputField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -74,9 +72,16 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String compared = charSequence.toString();
-                for (int j = 0; j < list.length; j++) {
+                foundSubject = -1;
+                //TODO: check if right
+                for (int j = 0; ((j < list.length)&&(j<objects.length)); j++) {
                     if (compared.equals(list[j])){
-                        subjectChangeViewModel.findChecks((Subject)(objects[j]));
+                        Subject temp = ((Subject)(objects[j]));
+                        if((binding.subjectTypeInputField.getText().toString().equals("пр") && !temp.getLecture())||(binding.subjectTypeInputField.getText().toString().equals("лк") && temp.getLecture())){
+                            Log.d(TAG, "onTextChanged: Found");
+                            foundSubject = j;
+                            subjectChangeViewModel.findChecks(temp);
+                        }
                     }
                 }
             }
@@ -87,21 +92,6 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
             }
         });
 
-        //binding.subjectTypeInputField.setText("пр");
-        binding.subjectInputField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    subjectChangeViewModel.setType(false);
-                }
-                else{subjectChangeViewModel.setType(true);}
-            }
-        });
         /*binding.subjectTypeInputField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -124,7 +114,6 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
 
 
         subjectChangeViewModel.getWeekChecks().observe(getViewLifecycleOwner(), s -> {
-            Log.d(TAG, "onCreateView: "+s[0]+s[1]+s[3]+s[4]+s[5]);
             if (s[0]) {binding.subjectAddWeek1.setTextColor(Color.RED);}
             else{binding.subjectAddWeek1.setTextColor(Color.BLACK);}
             if (s[1]) {binding.subjectAddWeek2.setTextColor(Color.RED);}
@@ -231,6 +220,7 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
 
 
         return root;
+        //return inflater.inflate(R.layout.subject_change_fragment, container, false);
     }
 
 
@@ -238,134 +228,221 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch ((String)view.getTag()){
             case "subjectAddAll":
-                subjectChangeViewModel.checkAll();
+                checkAll();
                 break;
             case "subjectAddEven":
-                subjectChangeViewModel.checkEven();
+               checkEven();
                 break;
             case "subjectAddOdd":
-                subjectChangeViewModel.checkOdd();
+                checkOdd();
                 break;
             case "subjectAddClear":
-                subjectChangeViewModel.clear();
+                checkClear();
                 break;
             case "subjectAddConfirm":
-                boolean[][] classChecks = new boolean[Schedule.dayCount][Schedule.classCount];
-                boolean[] weekChecks = new boolean[Schedule.weekCount];
+                requireActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                boolean classChecks[][] = getUserChecks();
+                boolean weekChecks[] = getUserWeekChecks();
+                int collisions=0;
 
-
-                weekChecks[0]=binding.subjectAddWeek1.isChecked();
-                weekChecks[1]=binding.subjectAddWeek2.isChecked();
-                weekChecks[2]=binding.subjectAddWeek3.isChecked();
-                weekChecks[3]=binding.subjectAddWeek4.isChecked();
-                weekChecks[4]=binding.subjectAddWeek5.isChecked();
-                weekChecks[5]=binding.subjectAddWeek6.isChecked();
-
-                int collisions = subjectChangeViewModel.collisionCheck(weekChecks);
-                if(collisions>0){
+                if (foundSubject>-1){collisions = subjectChangeViewModel.collisionCheck(weekChecks);}
+                TreeSet<String> treeSet = subjectChangeViewModel.otherCollisionCheck(weekChecks,classChecks);
+                String[] changedSubjects = treeSet.toArray(new String[treeSet.size()]);
+                Log.d(TAG, "onClick: "+foundSubject+collisions);
+                if((collisions>0)||(changedSubjects.length>0)){
+                    String message = "";
+                    if(collisions==1){
+                        message += "Будет перезаписано расписание предмета \""+((Subject)(Schedule.getSubjects().toArray()[foundSubject])).getName()+"\" в "+collisions+" неделе.\n";
+                    }
+                    if(collisions>1){
+                        message += "Будет перезаписано расписание предмета \""+((Subject)(Schedule.getSubjects().toArray()[foundSubject])).getName()+"\" в "+collisions+" неделях.\n";
+                    }
+                    if(changedSubjects.length>0){
+                        StringBuilder outputSubjects = new StringBuilder("\""+changedSubjects[0]+"\"");
+                        for (int i = 1; i < changedSubjects.length; i++) {
+                            outputSubjects.append(", \"").append(changedSubjects[i]).append("\"");
+                        }
+                        message+="Будут перезаписаны некоторые пары следующих предметов: "+ outputSubjects +"\n";
+                    }
+                    message+="Вы хотите продолжить?";
                     new AlertDialog.Builder(getContext())
-                            .setTitle("Delete entry")
-                            .setMessage("Are you sure you want to delete this entry?")
+                            .setTitle(getResources().getString(R.string.collision_alert_title))
+                            .setMessage(message)
 
                             // Specifying a listener allows you to take an action before dismissing the dialog.
                             // The dialog is automatically dismissed when a dialog button is clicked.
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    classChecks[0][0]=binding.subjectAddDay1Class1.isChecked();
-                                    classChecks[0][1]=binding.subjectAddDay1Class2.isChecked();
-                                    classChecks[0][2]=binding.subjectAddDay1Class3.isChecked();
-                                    classChecks[0][3]=binding.subjectAddDay1Class4.isChecked();
-                                    classChecks[0][4]=binding.subjectAddDay1Class5.isChecked();
-                                    classChecks[0][5]=binding.subjectAddDay1Class6.isChecked();
-                                    classChecks[1][0]=binding.subjectAddDay2Class1.isChecked();
-                                    classChecks[1][1]=binding.subjectAddDay2Class2.isChecked();
-                                    classChecks[1][2]=binding.subjectAddDay2Class3.isChecked();
-                                    classChecks[1][3]=binding.subjectAddDay2Class4.isChecked();
-                                    classChecks[1][4]=binding.subjectAddDay2Class5.isChecked();
-                                    classChecks[1][5]=binding.subjectAddDay2Class6.isChecked();
-                                    classChecks[2][0]=binding.subjectAddDay3Class1.isChecked();
-                                    classChecks[2][1]=binding.subjectAddDay3Class2.isChecked();
-                                    classChecks[2][2]=binding.subjectAddDay3Class3.isChecked();
-                                    classChecks[2][3]=binding.subjectAddDay3Class4.isChecked();
-                                    classChecks[2][4]=binding.subjectAddDay3Class5.isChecked();
-                                    classChecks[2][5]=binding.subjectAddDay3Class6.isChecked();
-                                    classChecks[3][0]=binding.subjectAddDay4Class1.isChecked();
-                                    classChecks[3][1]=binding.subjectAddDay4Class2.isChecked();
-                                    classChecks[3][2]=binding.subjectAddDay4Class3.isChecked();
-                                    classChecks[3][3]=binding.subjectAddDay4Class4.isChecked();
-                                    classChecks[3][4]=binding.subjectAddDay4Class5.isChecked();
-                                    classChecks[3][5]=binding.subjectAddDay4Class6.isChecked();
-                                    classChecks[4][0]=binding.subjectAddDay5Class1.isChecked();
-                                    classChecks[4][1]=binding.subjectAddDay5Class2.isChecked();
-                                    classChecks[4][2]=binding.subjectAddDay5Class3.isChecked();
-                                    classChecks[4][3]=binding.subjectAddDay5Class4.isChecked();
-                                    classChecks[4][4]=binding.subjectAddDay1Class5.isChecked();
-                                    classChecks[4][5]=binding.subjectAddDay5Class6.isChecked();
-                                    classChecks[5][0]=binding.subjectAddDay6Class1.isChecked();
-                                    classChecks[5][1]=binding.subjectAddDay6Class2.isChecked();
-                                    classChecks[5][2]=binding.subjectAddDay6Class3.isChecked();
-                                    classChecks[5][3]=binding.subjectAddDay6Class4.isChecked();
-                                    classChecks[5][4]=binding.subjectAddDay6Class5.isChecked();
-                                    classChecks[5][5]=binding.subjectAddDay6Class6.isChecked();
-
-
-                                    subjectChangeViewModel.submit(binding.subjectInputField.getText().toString(),binding.subjectTypeInputField.getText().toString(),classChecks,weekChecks);
-                                    NavUtils.navigateUpFromSameTask(requireActivity());
-                                }
-                            })
+                            .setPositiveButton(android.R.string.yes, (dialog, which) -> submit(weekChecks,classChecks))
 
                             // A null listener allows the button to dismiss the dialog and take no further action.
                             .setNegativeButton(android.R.string.no, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();;
+                            .show();
                 }
                 else{
-                    classChecks[0][0]=binding.subjectAddDay1Class1.isChecked();
-                    classChecks[0][1]=binding.subjectAddDay1Class2.isChecked();
-                    classChecks[0][2]=binding.subjectAddDay1Class3.isChecked();
-                    classChecks[0][3]=binding.subjectAddDay1Class4.isChecked();
-                    classChecks[0][4]=binding.subjectAddDay1Class5.isChecked();
-                    classChecks[0][5]=binding.subjectAddDay1Class6.isChecked();
-                    classChecks[1][0]=binding.subjectAddDay2Class1.isChecked();
-                    classChecks[1][1]=binding.subjectAddDay2Class2.isChecked();
-                    classChecks[1][2]=binding.subjectAddDay2Class3.isChecked();
-                    classChecks[1][3]=binding.subjectAddDay2Class4.isChecked();
-                    classChecks[1][4]=binding.subjectAddDay2Class5.isChecked();
-                    classChecks[1][5]=binding.subjectAddDay2Class6.isChecked();
-                    classChecks[2][0]=binding.subjectAddDay3Class1.isChecked();
-                    classChecks[2][1]=binding.subjectAddDay3Class2.isChecked();
-                    classChecks[2][2]=binding.subjectAddDay3Class3.isChecked();
-                    classChecks[2][3]=binding.subjectAddDay3Class4.isChecked();
-                    classChecks[2][4]=binding.subjectAddDay3Class5.isChecked();
-                    classChecks[2][5]=binding.subjectAddDay3Class6.isChecked();
-                    classChecks[3][0]=binding.subjectAddDay4Class1.isChecked();
-                    classChecks[3][1]=binding.subjectAddDay4Class2.isChecked();
-                    classChecks[3][2]=binding.subjectAddDay4Class3.isChecked();
-                    classChecks[3][3]=binding.subjectAddDay4Class4.isChecked();
-                    classChecks[3][4]=binding.subjectAddDay4Class5.isChecked();
-                    classChecks[3][5]=binding.subjectAddDay4Class6.isChecked();
-                    classChecks[4][0]=binding.subjectAddDay5Class1.isChecked();
-                    classChecks[4][1]=binding.subjectAddDay5Class2.isChecked();
-                    classChecks[4][2]=binding.subjectAddDay5Class3.isChecked();
-                    classChecks[4][3]=binding.subjectAddDay5Class4.isChecked();
-                    classChecks[4][4]=binding.subjectAddDay1Class5.isChecked();
-                    classChecks[4][5]=binding.subjectAddDay5Class6.isChecked();
-                    classChecks[5][0]=binding.subjectAddDay6Class1.isChecked();
-                    classChecks[5][1]=binding.subjectAddDay6Class2.isChecked();
-                    classChecks[5][2]=binding.subjectAddDay6Class3.isChecked();
-                    classChecks[5][3]=binding.subjectAddDay6Class4.isChecked();
-                    classChecks[5][4]=binding.subjectAddDay6Class5.isChecked();
-                    classChecks[5][5]=binding.subjectAddDay6Class6.isChecked();
-
-
-                    subjectChangeViewModel.submit(binding.subjectInputField.getText().toString(),binding.subjectTypeInputField.getText().toString(),classChecks,weekChecks);
-                    NavUtils.navigateUpFromSameTask(getActivity());
+                   submit(weekChecks,getUserChecks());
                 }
 
-
-
+                requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 break;
         }
 
     }
+
+
+    private void checkAll(){
+        binding.subjectAddWeek1.setChecked(true);
+        binding.subjectAddWeek2.setChecked(true);
+        binding.subjectAddWeek3.setChecked(true);
+        binding.subjectAddWeek4.setChecked(true);
+        binding.subjectAddWeek5.setChecked(true);
+        binding.subjectAddWeek6.setChecked(true);
+        binding.subjectAddWeek7.setChecked(true);
+        binding.subjectAddWeek8.setChecked(true);
+        binding.subjectAddWeek9.setChecked(true);
+        binding.subjectAddWeek10.setChecked(true);
+        binding.subjectAddWeek11.setChecked(true);
+        binding.subjectAddWeek12.setChecked(true);
+        binding.subjectAddWeek13.setChecked(true);
+        binding.subjectAddWeek14.setChecked(true);
+        binding.subjectAddWeek15.setChecked(true);
+        binding.subjectAddWeek16.setChecked(true);
+    }
+
+
+    private void checkEven(){
+        binding.subjectAddWeek1.setChecked(false);
+        binding.subjectAddWeek2.setChecked(true);
+        binding.subjectAddWeek3.setChecked(false);
+        binding.subjectAddWeek4.setChecked(true);
+        binding.subjectAddWeek5.setChecked(false);
+        binding.subjectAddWeek6.setChecked(true);
+        binding.subjectAddWeek7.setChecked(false);
+        binding.subjectAddWeek8.setChecked(true);
+        binding.subjectAddWeek9.setChecked(false);
+        binding.subjectAddWeek10.setChecked(true);
+        binding.subjectAddWeek11.setChecked(false);
+        binding.subjectAddWeek12.setChecked(true);
+        binding.subjectAddWeek13.setChecked(false);
+        binding.subjectAddWeek14.setChecked(true);
+        binding.subjectAddWeek15.setChecked(false);
+        binding.subjectAddWeek16.setChecked(true);
+
+    }
+
+
+    private void checkOdd(){
+        binding.subjectAddWeek1.setChecked(true);
+        binding.subjectAddWeek2.setChecked(false);
+        binding.subjectAddWeek3.setChecked(true);
+        binding.subjectAddWeek4.setChecked(false);
+        binding.subjectAddWeek5.setChecked(true);
+        binding.subjectAddWeek6.setChecked(false);
+        binding.subjectAddWeek7.setChecked(true);
+        binding.subjectAddWeek8.setChecked(false);
+        binding.subjectAddWeek9.setChecked(true);
+        binding.subjectAddWeek10.setChecked(false);
+        binding.subjectAddWeek11.setChecked(true);
+        binding.subjectAddWeek12.setChecked(false);
+        binding.subjectAddWeek13.setChecked(true);
+        binding.subjectAddWeek14.setChecked(false);
+        binding.subjectAddWeek15.setChecked(true);
+        binding.subjectAddWeek16.setChecked(false);
+
+    }
+
+
+    private void checkClear(){
+        binding.subjectAddWeek1.setChecked(false);
+        binding.subjectAddWeek2.setChecked(false);
+        binding.subjectAddWeek3.setChecked(false);
+        binding.subjectAddWeek4.setChecked(false);
+        binding.subjectAddWeek5.setChecked(false);
+        binding.subjectAddWeek6.setChecked(false);
+        binding.subjectAddWeek7.setChecked(false);
+        binding.subjectAddWeek8.setChecked(false);
+        binding.subjectAddWeek9.setChecked(false);
+        binding.subjectAddWeek10.setChecked(false);
+        binding.subjectAddWeek11.setChecked(false);
+        binding.subjectAddWeek12.setChecked(false);
+        binding.subjectAddWeek13.setChecked(false);
+        binding.subjectAddWeek14.setChecked(false);
+        binding.subjectAddWeek15.setChecked(false);
+        binding.subjectAddWeek16.setChecked(false);
+    }
+
+
+    private boolean[][] getUserChecks(){
+        boolean[][] classChecks = new boolean[Schedule.dayCount][Schedule.classCount];
+        classChecks[0][0]=binding.subjectAddDay1Class1.isChecked();
+        classChecks[0][1]=binding.subjectAddDay1Class2.isChecked();
+        classChecks[0][2]=binding.subjectAddDay1Class3.isChecked();
+        classChecks[0][3]=binding.subjectAddDay1Class4.isChecked();
+        classChecks[0][4]=binding.subjectAddDay1Class5.isChecked();
+        classChecks[0][5]=binding.subjectAddDay1Class6.isChecked();
+        classChecks[1][0]=binding.subjectAddDay2Class1.isChecked();
+        classChecks[1][1]=binding.subjectAddDay2Class2.isChecked();
+        classChecks[1][2]=binding.subjectAddDay2Class3.isChecked();
+        classChecks[1][3]=binding.subjectAddDay2Class4.isChecked();
+        classChecks[1][4]=binding.subjectAddDay2Class5.isChecked();
+        classChecks[1][5]=binding.subjectAddDay2Class6.isChecked();
+        classChecks[2][0]=binding.subjectAddDay3Class1.isChecked();
+        classChecks[2][1]=binding.subjectAddDay3Class2.isChecked();
+        classChecks[2][2]=binding.subjectAddDay3Class3.isChecked();
+        classChecks[2][3]=binding.subjectAddDay3Class4.isChecked();
+        classChecks[2][4]=binding.subjectAddDay3Class5.isChecked();
+        classChecks[2][5]=binding.subjectAddDay3Class6.isChecked();
+        classChecks[3][0]=binding.subjectAddDay4Class1.isChecked();
+        classChecks[3][1]=binding.subjectAddDay4Class2.isChecked();
+        classChecks[3][2]=binding.subjectAddDay4Class3.isChecked();
+        classChecks[3][3]=binding.subjectAddDay4Class4.isChecked();
+        classChecks[3][4]=binding.subjectAddDay4Class5.isChecked();
+        classChecks[3][5]=binding.subjectAddDay4Class6.isChecked();
+        classChecks[4][0]=binding.subjectAddDay5Class1.isChecked();
+        classChecks[4][1]=binding.subjectAddDay5Class2.isChecked();
+        classChecks[4][2]=binding.subjectAddDay5Class3.isChecked();
+        classChecks[4][3]=binding.subjectAddDay5Class4.isChecked();
+        classChecks[4][4]=binding.subjectAddDay1Class5.isChecked();
+        classChecks[4][5]=binding.subjectAddDay5Class6.isChecked();
+        classChecks[5][0]=binding.subjectAddDay6Class1.isChecked();
+        classChecks[5][1]=binding.subjectAddDay6Class2.isChecked();
+        classChecks[5][2]=binding.subjectAddDay6Class3.isChecked();
+        classChecks[5][3]=binding.subjectAddDay6Class4.isChecked();
+        classChecks[5][4]=binding.subjectAddDay6Class5.isChecked();
+        classChecks[5][5]=binding.subjectAddDay6Class6.isChecked();
+        return classChecks;
+    }
+
+    private boolean[] getUserWeekChecks(){
+        boolean[] weekChecks = new boolean[Schedule.weekCount];
+        weekChecks[0]=binding.subjectAddWeek1.isChecked();
+        weekChecks[1]=binding.subjectAddWeek2.isChecked();
+        weekChecks[2]=binding.subjectAddWeek3.isChecked();
+        weekChecks[3]=binding.subjectAddWeek4.isChecked();
+        weekChecks[4]=binding.subjectAddWeek5.isChecked();
+        weekChecks[5]=binding.subjectAddWeek6.isChecked();
+        weekChecks[6]=binding.subjectAddWeek1.isChecked();
+        weekChecks[7]=binding.subjectAddWeek2.isChecked();
+        weekChecks[8]=binding.subjectAddWeek3.isChecked();
+        weekChecks[9]=binding.subjectAddWeek4.isChecked();
+        weekChecks[10]=binding.subjectAddWeek5.isChecked();
+        weekChecks[11]=binding.subjectAddWeek6.isChecked();
+        weekChecks[12]=binding.subjectAddWeek1.isChecked();
+        weekChecks[13]=binding.subjectAddWeek2.isChecked();
+        weekChecks[14]=binding.subjectAddWeek3.isChecked();
+        weekChecks[15]=binding.subjectAddWeek4.isChecked();
+        return weekChecks;
+    }
+
+
+    private void submit(boolean[] weekChecks, boolean[][] classChecks){
+        if(foundSubject>-1){
+            subjectChangeViewModel.submit((Subject)(Schedule.getSubjects().toArray()[foundSubject]),weekChecks,classChecks);
+        }
+        else {
+            subjectChangeViewModel.submit(binding.subjectInputField.getText().toString(), binding.subjectTypeInputField.getText().toString(), weekChecks, classChecks);
+        }
+        NavUtils.navigateUpFromSameTask(requireActivity());
+    }
+
 }

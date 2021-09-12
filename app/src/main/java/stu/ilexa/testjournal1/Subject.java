@@ -9,25 +9,36 @@ public class Subject implements Comparable{
     private boolean isLecture;
     private static final String TAG = "Subject";
 
+
     public boolean getLecture() {
         return isLecture;
     }
+
 
     public void setLecture(boolean lecture) {
         isLecture = lecture;
     }
 
+
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
+
     public Subject(String name,boolean type) {
         this.name = name;
         this.isLecture = type;
+        boolean temp = Schedule.getSubjects().add(this);
+    }
+
+
+    public Subject(String name) {
+        this.name = name;
         boolean temp = Schedule.getSubjects().add(this);
         Log.d(TAG, name+temp);
     }

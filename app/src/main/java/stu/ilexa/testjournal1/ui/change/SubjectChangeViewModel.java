@@ -2,34 +2,28 @@ package stu.ilexa.testjournal1.ui.change;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 import stu.ilexa.testjournal1.Schedule;
 import stu.ilexa.testjournal1.Subject;
 
 public class SubjectChangeViewModel extends ViewModel {
     private static final String TAG = "SubjectChangeViewModel";
-    private MutableLiveData<boolean[][]> classChecks;
     private MutableLiveData<boolean[]> weekChecks;
-    private boolean type=false;
 
 
     public SubjectChangeViewModel(){
-        classChecks = new MutableLiveData<>();
         weekChecks = new MutableLiveData<>();
-        clear();
+        checksClear();
     }
 
 
     public void findChecks(Subject object){
-        clear();
+        checksClear();
         boolean[] tempWeeks = new boolean[Schedule.weekCount];
-        boolean[][] tempClasses = new boolean[Schedule.dayCount][Schedule.classCount];
         Subject[][][] schedule = Schedule.getSchedule();
         for (int i = 0; i < Schedule.weekCount; i++) {
             for (int j = 0; j < Schedule.dayCount; j++) {
@@ -37,35 +31,41 @@ public class SubjectChangeViewModel extends ViewModel {
                     if(object == schedule[i][j][k]){
                         Log.d(TAG, "findChecks: "+object.getName()+i+j+k);
                         tempWeeks[i]=true;
-                        tempClasses[j][k]=true;
                     }
                 }
             }
         }
         weekChecks.setValue(tempWeeks);
-        classChecks.setValue(tempClasses);
 
     }
 
 
-    public void setType(boolean type) {
-        this.type = type;
-    }
-
-
-    public void submit(String name, String type, boolean[][] classChecks, boolean[] weekChecks){
-        boolean temp;
-        if(type.equals("пр")){
-            temp = false;
-        }
-        else{temp=true;}
+    public void submit(Subject subject, boolean[] weekChecks, boolean[][] classChecks){
         for (int i = 0; i < Schedule.weekCount; i++) {
-            if(weekChecks[i]){
+            if (weekChecks[i]) {
                 for (int j = 0; j < Schedule.dayCount; j++) {
                     for (int k = 0; k < Schedule.classCount; k++) {
-                        if(classChecks[j][k]){
-                            Schedule.changeSubject(i,j,k,new Subject(name, temp));
+                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, subject); }
+                        else{
+                            Log.d(TAG, "submit: "+subject.getName());
+                            if(subject==Schedule.getSchedule()[i][j][k]){
+                                Schedule.changeSubject(i,j,k,Schedule.getEmpty());
+                            }
                         }
+                    }
+                }
+            }
+        }
+
+    }
+    public void submit(String name, String type,  boolean[] weekChecks, boolean[][] classChecks){
+        boolean temp = !type.equals("пр");
+        Subject subject = new Subject(name, temp);
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            if (weekChecks[i]) {
+                for (int j = 0; j < Schedule.dayCount; j++) {
+                    for (int k = 0; k < Schedule.classCount; k++) {
+                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, subject); }
                     }
                 }
             }
@@ -77,14 +77,33 @@ public class SubjectChangeViewModel extends ViewModel {
     public int collisionCheck(boolean[] weeks){
         int count = 0;
         for (int i = 0; i<Schedule.weekCount;i++){
-            if ((weeks[i]) && (weekChecks.getValue()[i])){count++;}
+            if(weeks[i]&&weekChecks.getValue()[i]){
+                count++;
+            }
         }
         return count;
     }
 
+    public TreeSet<String> otherCollisionCheck(boolean[] weeks, boolean[][] classes){
 
-    public LiveData<boolean[][]> getClassChecks() {
-        return classChecks;
+        TreeSet<String> changedSubjects = new TreeSet<>();
+        Subject[][][] schedule = Schedule.getSchedule();
+        for (int i = 0; i<Schedule.weekCount;i++){
+            if(weeks[i]){
+                for (int j = 0; j < Schedule.dayCount; j++) {
+                    for (int k = 0; k < Schedule.classCount; k++) {
+                        if ((classes[j][k])&&(schedule[i][j][k]!=Schedule.getEmpty())){
+                            if(schedule[i][j][k].getLecture()){
+                                changedSubjects.add(schedule[i][j][k].getName()+"(лк)");}
+                            else{
+                                changedSubjects.add(schedule[i][j][k].getName()+"(пр)");}
+                            }
+                        }
+                    }
+                }
+            }
+
+        return changedSubjects;
     }
 
 
@@ -93,48 +112,12 @@ public class SubjectChangeViewModel extends ViewModel {
     }
 
 
-    public void clear(){
+    public void checksClear(){
         boolean[] temp = new boolean[Schedule.weekCount];
-        boolean[][] tempClass = new boolean[Schedule.dayCount][Schedule.classCount];
         for (int i = 0; i < Schedule.weekCount; i++) {
             temp[i]=false;
         }
 
-        for (int j = 0; j < Schedule.dayCount; j++) {
-            for (int k = 0; k < Schedule.classCount; k++) {
-                tempClass[j][k]=false;
-                }
-            }
-
-        weekChecks.setValue(temp);
-    }
-
-
-    public void checkEven(){
-        boolean[] temp = new boolean[Schedule.weekCount];
-        for (int i = 1; i < Schedule.weekCount; i+=2) {
-            temp[i]=true;
-        }
-        weekChecks.setValue(temp);
-
-    }
-
-
-    public void checkOdd(){
-        boolean[] temp = new boolean[Schedule.weekCount];
-        for (int i = 0; i < Schedule.weekCount; i+=2) {
-            temp[i]=true;
-        }
-        weekChecks.setValue(temp);
-
-    }
-
-
-    public void checkAll(){
-        boolean[] temp = new boolean[Schedule.weekCount];
-        for (int i = 0; i < Schedule.weekCount; i++) {
-            temp[i]=true;
-        }
         weekChecks.setValue(temp);
     }
 }

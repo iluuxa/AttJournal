@@ -9,16 +9,16 @@ public class Schedule{
     public final static int classCount = 6;
     private static Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
     private static TreeSet<Subject> subjects = new TreeSet<>();
+    private static Subject empty = new Subject("None");
 
     /**
      * Инициализация и обнуление расписания
      */
     public static void eraseSchedule(){
-        Subject empty = new Subject("None",false);
         for(int i=0;i<schedule.length;i++){
             for(int j=0;j<schedule[i].length;j++){
                 for(int k=0;k<schedule[j].length;k++){
-                    schedule[i][j][k]=empty;
+                    schedule[i][j][k]=Schedule.empty;
                 }
             }
         }
@@ -70,7 +70,11 @@ public class Schedule{
     public static Subject[][][] getSchedule() {
         return schedule;
     }
-    
+
+
+    public static Subject getEmpty() {
+        return empty;
+    }
 
     public static void changeSubject(int week, int day, int dayClass, Subject subject){
         Schedule.schedule[week][day][dayClass]=subject;

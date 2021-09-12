@@ -587,7 +587,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textAlignment="center"
-                        android:text="@string/day_of_week_6" />
+                        android:text="@string/day_of_week_5" />
 
                     <CheckBox
                         android:id="@+id/subjectAddDay5Class1"
