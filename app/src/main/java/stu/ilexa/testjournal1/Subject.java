@@ -25,9 +25,10 @@ public class Subject implements Comparable{
         this.name = name;
     }
 
-    public Subject(String name) {
+    public Subject(String name,boolean type) {
         this.name = name;
-        boolean temp = Schedule.subjects.add(this);
+        this.isLecture = type;
+        boolean temp = Schedule.getSubjects().add(this);
         Log.d(TAG, name+temp);
     }
 

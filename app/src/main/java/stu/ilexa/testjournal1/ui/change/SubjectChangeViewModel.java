@@ -30,10 +30,11 @@ public class SubjectChangeViewModel extends ViewModel {
         clear();
         boolean[] tempWeeks = new boolean[Schedule.weekCount];
         boolean[][] tempClasses = new boolean[Schedule.dayCount][Schedule.classCount];
+        Subject[][][] schedule = Schedule.getSchedule();
         for (int i = 0; i < Schedule.weekCount; i++) {
             for (int j = 0; j < Schedule.dayCount; j++) {
                 for (int k = 0; k < Schedule.classCount; k++) {
-                    if(object == Schedule.schedule[i][j][k]){
+                    if(object == schedule[i][j][k]){
                         Log.d(TAG, "findChecks: "+object.getName()+i+j+k);
                         tempWeeks[i]=true;
                         tempClasses[j][k]=true;
@@ -53,6 +54,22 @@ public class SubjectChangeViewModel extends ViewModel {
 
 
     public void submit(String name, String type, boolean[][] classChecks, boolean[] weekChecks){
+        boolean temp;
+        if(type.equals("пр")){
+            temp = false;
+        }
+        else{temp=true;}
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            if(weekChecks[i]){
+                for (int j = 0; j < Schedule.dayCount; j++) {
+                    for (int k = 0; k < Schedule.classCount; k++) {
+                        if(classChecks[j][k]){
+                            Schedule.changeSubject(i,j,k,new Subject(name, temp));
+                        }
+                    }
+                }
+            }
+        }
 
     }
 

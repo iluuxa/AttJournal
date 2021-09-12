@@ -22,9 +22,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.Schedule;
@@ -51,7 +53,7 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
         binding = SubjectChangeFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Object[] objects = Schedule.subjects.toArray();
+        Object[] objects = Schedule.getSubjects().toArray();
         String[] list = new String[objects.length];
         for (int i = 0; i < objects.length; i++) {
             list[i]=((Subject)(objects[i])).getName();
@@ -86,7 +88,21 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
         });
 
         //binding.subjectTypeInputField.setText("пр");
-        binding.subjectTypeInputField.addTextChangedListener(new TextWatcher() {
+        binding.subjectInputField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i==0){
+                    subjectChangeViewModel.setType(false);
+                }
+                else{subjectChangeViewModel.setType(true);}
+            }
+        });
+        /*binding.subjectTypeInputField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -104,7 +120,7 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
             public void afterTextChanged(Editable editable) {
 
             }
-        });
+        });*/
 
 
         subjectChangeViewModel.getWeekChecks().observe(getViewLifecycleOwner(), s -> {
@@ -247,12 +263,61 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
 
                 int collisions = subjectChangeViewModel.collisionCheck(weekChecks);
                 if(collisions>0){
-                    CollisionAlertFragment myDialogFragment = new CollisionAlertFragment();
-                    FragmentManager manager = getParentFragmentManager();
-                    //myDialogFragment.show(manager, "dialog");
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Delete entry")
+                            .setMessage("Are you sure you want to delete this entry?")
 
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    myDialogFragment.show(transaction, "dialog");
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    classChecks[0][0]=binding.subjectAddDay1Class1.isChecked();
+                                    classChecks[0][1]=binding.subjectAddDay1Class2.isChecked();
+                                    classChecks[0][2]=binding.subjectAddDay1Class3.isChecked();
+                                    classChecks[0][3]=binding.subjectAddDay1Class4.isChecked();
+                                    classChecks[0][4]=binding.subjectAddDay1Class5.isChecked();
+                                    classChecks[0][5]=binding.subjectAddDay1Class6.isChecked();
+                                    classChecks[1][0]=binding.subjectAddDay2Class1.isChecked();
+                                    classChecks[1][1]=binding.subjectAddDay2Class2.isChecked();
+                                    classChecks[1][2]=binding.subjectAddDay2Class3.isChecked();
+                                    classChecks[1][3]=binding.subjectAddDay2Class4.isChecked();
+                                    classChecks[1][4]=binding.subjectAddDay2Class5.isChecked();
+                                    classChecks[1][5]=binding.subjectAddDay2Class6.isChecked();
+                                    classChecks[2][0]=binding.subjectAddDay3Class1.isChecked();
+                                    classChecks[2][1]=binding.subjectAddDay3Class2.isChecked();
+                                    classChecks[2][2]=binding.subjectAddDay3Class3.isChecked();
+                                    classChecks[2][3]=binding.subjectAddDay3Class4.isChecked();
+                                    classChecks[2][4]=binding.subjectAddDay3Class5.isChecked();
+                                    classChecks[2][5]=binding.subjectAddDay3Class6.isChecked();
+                                    classChecks[3][0]=binding.subjectAddDay4Class1.isChecked();
+                                    classChecks[3][1]=binding.subjectAddDay4Class2.isChecked();
+                                    classChecks[3][2]=binding.subjectAddDay4Class3.isChecked();
+                                    classChecks[3][3]=binding.subjectAddDay4Class4.isChecked();
+                                    classChecks[3][4]=binding.subjectAddDay4Class5.isChecked();
+                                    classChecks[3][5]=binding.subjectAddDay4Class6.isChecked();
+                                    classChecks[4][0]=binding.subjectAddDay5Class1.isChecked();
+                                    classChecks[4][1]=binding.subjectAddDay5Class2.isChecked();
+                                    classChecks[4][2]=binding.subjectAddDay5Class3.isChecked();
+                                    classChecks[4][3]=binding.subjectAddDay5Class4.isChecked();
+                                    classChecks[4][4]=binding.subjectAddDay1Class5.isChecked();
+                                    classChecks[4][5]=binding.subjectAddDay5Class6.isChecked();
+                                    classChecks[5][0]=binding.subjectAddDay6Class1.isChecked();
+                                    classChecks[5][1]=binding.subjectAddDay6Class2.isChecked();
+                                    classChecks[5][2]=binding.subjectAddDay6Class3.isChecked();
+                                    classChecks[5][3]=binding.subjectAddDay6Class4.isChecked();
+                                    classChecks[5][4]=binding.subjectAddDay6Class5.isChecked();
+                                    classChecks[5][5]=binding.subjectAddDay6Class6.isChecked();
+
+
+                                    subjectChangeViewModel.submit(binding.subjectInputField.getText().toString(),binding.subjectTypeInputField.getText().toString(),classChecks,weekChecks);
+                                    NavUtils.navigateUpFromSameTask(requireActivity());
+                                }
+                            })
+
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();;
                 }
                 else{
                     classChecks[0][0]=binding.subjectAddDay1Class1.isChecked();

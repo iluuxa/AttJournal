@@ -7,14 +7,14 @@ public class Schedule{
     public final static int weekCount = 16;
     public final static int dayCount = 6;
     public final static int classCount = 6;
-    public static Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
-    public static TreeSet<Subject> subjects = new TreeSet<>();
+    private static Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
+    private static TreeSet<Subject> subjects = new TreeSet<>();
 
     /**
      * Инициализация и обнуление расписания
      */
     public static void eraseSchedule(){
-        Subject empty = new Subject("None");
+        Subject empty = new Subject("None",false);
         for(int i=0;i<schedule.length;i++){
             for(int j=0;j<schedule[i].length;j++){
                 for(int k=0;k<schedule[j].length;k++){
@@ -26,16 +26,16 @@ public class Schedule{
 
     public static void testInit(){
         eraseSchedule();
-        Subject subj1=new Subject("Основы сетевых технологий");
-        Subject subj2=new Subject("Тестирование и верификация программного обеспечения");
-        Subject subj3=new Subject("Интерфейсы прикладного программирования");
-        Subject subj4=new Subject("Моделирование бизнес-процессов");
-        Subject subj5=new Subject("Технологические основы интернета вещей");
-        Subject subj6=new Subject("Разработка серверных частей интернет ресурсов");
-        Subject subj7=new Subject("Моделирование сред и разработка приложений");
-        Subject subj8=new Subject("Разработка баз данных");
-        Subject subj9=new Subject("Архитектура клиент-серверных приложений");
-        Subject subj10=new Subject("Безопасность жизнедеятельности");
+        Subject subj1=new Subject("Основы сетевых технологий", false);
+        Subject subj2=new Subject("Тестирование и верификация программного обеспечения", false);
+        Subject subj3=new Subject("Интерфейсы прикладного программирования", false);
+        Subject subj4=new Subject("Моделирование бизнес-процессов", false);
+        Subject subj5=new Subject("Технологические основы интернета вещей", false);
+        Subject subj6=new Subject("Разработка серверных частей интернет ресурсов", false);
+        Subject subj7=new Subject("Моделирование сред и разработка приложений", false);
+        Subject subj8=new Subject("Разработка баз данных", false);
+        Subject subj9=new Subject("Архитектура клиент-серверных приложений", false);
+        Subject subj10=new Subject("Безопасность жизнедеятельности", false);
         for (int i = 0;i<weekCount;i++){
             schedule[i][0][0]=subj1;
             schedule[i][1][4]=subj2;
@@ -67,8 +67,17 @@ public class Schedule{
         }
     }
 
+    public static Subject[][][] getSchedule() {
+        return schedule;
+    }
+    
 
+    public static void changeSubject(int week, int day, int dayClass, Subject subject){
+        Schedule.schedule[week][day][dayClass]=subject;
+    }
 
-
+    public static TreeSet<Subject> getSubjects() {
+        return subjects;
+    }
 
 }

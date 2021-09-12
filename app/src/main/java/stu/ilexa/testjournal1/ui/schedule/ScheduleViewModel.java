@@ -16,23 +16,22 @@ public class ScheduleViewModel extends ViewModel {
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();
         Schedule.testInit();
-        //String[] displayedSubjects = Schedule.schedule[selectedWeek][selectedDay];
-        mText.setValue(Schedule.schedule[selectedWeek][selectedDay]);
+        mText.setValue(Schedule.getSchedule()[selectedWeek][selectedDay]);
     }
 
     public void setSelectedDay(int selectedDay) {
         this.selectedDay = selectedDay;
-        mText.setValue(Schedule.schedule[selectedWeek][selectedDay]);
+        mText.setValue(Schedule.getSchedule()[selectedWeek][selectedDay]);
     }
 
     public void decrementSelectedWeek() {
         if(selectedWeek>0){ this.selectedWeek -=1;
-            mText.setValue(Schedule.schedule[selectedWeek][selectedDay]);}
+            mText.setValue(Schedule.getSchedule()[selectedWeek][selectedDay]);}
     }
 
     public void incrementSelectedWeek() {
         if(selectedWeek<15){ this.selectedWeek +=1;
-            mText.setValue(Schedule.schedule[selectedWeek][selectedDay]);}
+            mText.setValue(Schedule.getSchedule()[selectedWeek][selectedDay]);}
     }
 
     public LiveData<Subject[]> getText() {
