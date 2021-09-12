@@ -15,5 +15,8 @@ public class Student {
         this.patronymic = patronymic;
     }
 
+    public String getName(){
+        return lastName + firstName + patronymic;
+    }
 
 }

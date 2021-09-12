@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.AdapterListUpdateCallback;
+import androidx.recyclerview.widget.RecyclerView;
 
 import stu.ilexa.testjournal1.databinding.FragmentStudentsBinding;
 
@@ -27,11 +30,14 @@ public class StudentsFragment extends Fragment {
         binding = FragmentStudentsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
+        StudentsViewAdapter stringArrayAdapter= new StudentsViewAdapter();
+        binding.studentsScroll.setAdapter(stringArrayAdapter);
         studentsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+
+
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(@Nullable String[] s) {
+                stringArrayAdapter.add(s);
             }
         });
         return root;
