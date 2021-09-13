@@ -18,7 +18,6 @@ import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.util.Arrays;
 import java.util.TreeSet;
 
 import stu.ilexa.testjournal1.R;
@@ -32,7 +31,6 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
     private SubjectChangeFragmentBinding binding;
     private static final String TAG ="SubjectChangeFragment";
     int foundSubject = -1;
-    String changedSubject;
 
     public static SubjectChangeFragment newInstance() {
         return new SubjectChangeFragment();
@@ -43,10 +41,9 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        //Log.d(TAG, "onCreateView: "+SubjectChangeViewModel.class.toString());
+
+
         subjectChangeViewModel = new ViewModelProvider(this).get(SubjectChangeViewModel.class);
-        //subjectChangeViewModel = new ViewModelProvider(requireActivity()).get(SubjectChangeViewModel.class);
-        //subjectChangeViewModel=new ViewModelProvider(requireActivity(),getDefaultViewModelProviderFactory()).get(SubjectChangeViewModel.class);
         binding = SubjectChangeFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -73,8 +70,7 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String compared = charSequence.toString();
                 foundSubject = -1;
-                //TODO: check if right
-                for (int j = 0; ((j < list.length)&&(j<objects.length)); j++) {
+                for (int j = 0; (j < list.length); j++) {
                     if (compared.equals(list[j])){
                         Subject temp = ((Subject)(objects[j]));
                         if((binding.subjectTypeInputField.getText().toString().equals("пр") && !temp.getLecture())||(binding.subjectTypeInputField.getText().toString().equals("лк") && temp.getLecture())){
@@ -242,13 +238,13 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
             case "subjectAddConfirm":
                 requireActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                         WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                boolean classChecks[][] = getUserChecks();
-                boolean weekChecks[] = getUserWeekChecks();
+                boolean[][] classChecks = getUserChecks();
+                boolean[] weekChecks = getUserWeekChecks();
                 int collisions=0;
 
                 if (foundSubject>-1){collisions = subjectChangeViewModel.collisionCheck(weekChecks);}
                 TreeSet<String> treeSet = subjectChangeViewModel.otherCollisionCheck(weekChecks,classChecks);
-                String[] changedSubjects = treeSet.toArray(new String[treeSet.size()]);
+                String[] changedSubjects = treeSet.toArray(new String[0]);
                 Log.d(TAG, "onClick: "+foundSubject+collisions);
                 if((collisions>0)||(changedSubjects.length>0)){
                     String message = "";

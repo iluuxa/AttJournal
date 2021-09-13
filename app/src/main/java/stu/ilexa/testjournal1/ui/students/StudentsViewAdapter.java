@@ -25,18 +25,8 @@ public class StudentsViewAdapter extends RecyclerView.Adapter<StudentsViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_students, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.student_list_item, viewGroup, false);
         return new ViewHolder(v);
-    }
-
-
-    public void add(Student student){
-        Student[] temp = new Student[students.length+1];
-        for (int i = 0; i < students.length; i++) {
-            temp[i]=students[i];
-        }
-        temp[students.length]=student;
-        students=temp;
     }
 
 
@@ -44,6 +34,8 @@ public class StudentsViewAdapter extends RecyclerView.Adapter<StudentsViewAdapte
     public void onBindViewHolder(@NonNull StudentsViewAdapter.ViewHolder holder, int position) {
         Student student = students[position];
         holder.name.setText(student.getName());
+        String string = String.valueOf(position+1);
+        holder.number.setText(string);
     }
 
 
@@ -53,13 +45,26 @@ public class StudentsViewAdapter extends RecyclerView.Adapter<StudentsViewAdapte
     }
 
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
+        private TextView number;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.itemTextView);
+            name = (TextView) itemView.findViewById(R.id.student_list_item_text);
+            number = (TextView) itemView.findViewById(R.id.student_list_item_number);
         }
     }
 }

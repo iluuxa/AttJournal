@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.AdapterListUpdateCallback;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import stu.ilexa.testjournal1.Group;
 import stu.ilexa.testjournal1.Student;
 import stu.ilexa.testjournal1.databinding.FragmentStudentsBinding;
 
@@ -33,17 +34,14 @@ public class StudentsFragment extends Fragment {
         View root = binding.getRoot();
         RecyclerView studentsScroll = binding.studentsScroll;
 
-        StudentsViewAdapter stringArrayAdapter= new StudentsViewAdapter(new Student[]{new Student("Ясько","Илья","Артёмович")});
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext());
+        Group.testInit();
+        StudentsViewAdapter stringArrayAdapter= new StudentsViewAdapter(Group.getGroup());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL,false);
         studentsScroll.setLayoutManager(linearLayoutManager);
         studentsScroll.setAdapter(stringArrayAdapter);
 
-        studentsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String[]>() {
-
-            @Override
-            public void onChanged(@Nullable String[] s) {
-                //stringArrayAdapter.add();
-            }
+        studentsViewModel.getText().observe(getViewLifecycleOwner(), s -> {
+            //stringArrayAdapter.add();
         });
 
 
