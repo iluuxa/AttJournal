@@ -1,13 +1,7 @@
 package stu.ilexa.testjournal1;
 
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Group {
     private static Student[] group;
-    private static final String TAG="MyGroup";
 
 
     public static Student[] getGroup() {
@@ -19,21 +13,6 @@ public class Group {
         testInit();
     }
 
-
-    public static void sort(){
-        Student buff;
-        ArrayList<Student> disorderedStudents=new ArrayList<>();
-        ArrayList<Student> orderedStudents=new ArrayList<>();
-        for (int i = 0; i < group.length; i++) {
-            if (group[i].getOrder()>0){
-                orderedStudents.add(group[i]);
-            }
-            else{
-                disorderedStudents.add(group[i]);
-            }
-        }
-
-    }
 
     public static boolean add(Student student){
         //Log.d(TAG, "add: student: " +student.getName()+"\n"+ Arrays.toString(group));
@@ -50,6 +29,9 @@ public class Group {
                     return false;
                 }
                 temp[student.getOrder()-1] = student;
+                if(student.getOrder()-1< group.length){
+                    buff = group[student.getOrder()-1];
+                }
                 ordered=true;
             }
         }
@@ -84,20 +66,15 @@ public class Group {
                 }
             }
         }
-
-        if(temp[group.length]==null){
-            temp[group.length]=buff;
-        }
-
-        for (int i = 0; i < temp.length; i++) {
-            if(temp[i]!=null){
-            Log.d(TAG, "add: "+(i+1)+"   "+temp[i].getName());}
-            else{
-                Log.d(TAG, "add: Null");
+        if(j<temp.length) {
+            while ((temp[j] != null) && (j < temp.length-1)) {
+                j++;
             }
-
+            if(temp[j] == null){
+                temp[j] = buff;
+            }
         }
-        Log.d(TAG, "--------------------------------------------------------");
+
         group=temp;
         return true;
     }
@@ -136,8 +113,6 @@ public class Group {
         add(new Student("Ясько","Илья","Артёмович"));
         add(new Student("Мамедли","Эмиль","Вугар оглы",28));
         add(new Student("Баженов","Владимир","Сергеевич",30));
-
-
 
     }
 }

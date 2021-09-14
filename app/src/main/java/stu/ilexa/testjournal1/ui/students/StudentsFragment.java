@@ -41,7 +41,7 @@ public class StudentsFragment extends Fragment {
         studentsScroll.setAdapter(stringArrayAdapter);
 
         studentsViewModel.getText().observe(getViewLifecycleOwner(), s -> {
-            //stringArrayAdapter.add();
+
         });
 
 
