@@ -60,7 +60,7 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
         binding.ButtonWeekDay6.setOnClickListener(this);
         binding.imageButtonWeekNext.setOnClickListener(this);
         binding.imageButtonWeekPrevious.setOnClickListener(this);
-        binding.fab.setOnClickListener(this);
+        binding.addSubjectFAB.setOnClickListener(this);
 
         return root;
     }

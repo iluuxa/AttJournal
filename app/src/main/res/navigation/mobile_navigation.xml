@@ -23,4 +23,11 @@
         android:name="stu.ilexa.testjournal1.ui.schedule.ScheduleFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/student_fragment"
+        android:tag="StudentFragment"
+        android:name="stu.ilexa.testjournal1.ui.students.StudentFragment"
+        android:label="@string/student_fragment"
+        tools:layout="@layout/fragment_student"/>
 </navigation>

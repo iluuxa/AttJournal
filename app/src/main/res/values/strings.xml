@@ -32,4 +32,30 @@
     <string name="collision_alert_title">Перезапись</string>
     <string name="collision_alert_message_1"></string>
     <string name="collision_alert_message_2"></string>
+    <string name="title_activity_student">StudentActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="student_first_name">Имя</string>
+    <string name="student_last_name">Фамилия</string>
+    <string name="student_patronymic">Отчество</string>
+    <string name="student_order">Номер в списке (если фиксированный)</string>
+    <string name="student_telephone">Телефон</string>
+    <string name="student_email">Электронная почта</string>
+    <string name="input_student_first_name">Введите имя</string>
+    <string name="input_student_last_name">Введите фамилию</string>
+    <string name="input_student_patronymic">Введите отчество</string>
+    <string name="input_student_order">Введите номер (необязательно)</string>
+    <string name="input_student_telephone">Введите телефон (необязательно)</string>
+    <string name="input_student_email">Введите электронную почту (необязательно)</string>
+    <string name="student_add">Сохранить</string>
+    <string name="student_insufficient_input">Недостаточный ввод</string>
+    <string name="student_wrong_order_input">Номер занят</string>
+    <string name="student_fragment">Студент</string>
 </resources>

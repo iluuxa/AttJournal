@@ -4,16 +4,20 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import stu.ilexa.testjournal1.Group;
+import stu.ilexa.testjournal1.Student;
+
 public class StudentsViewModel extends ViewModel {
 
-    private MutableLiveData<String[]> mText;
+    private MutableLiveData<Student[]> students;
 
     public StudentsViewModel() {
-        mText = new MutableLiveData<>();
-        //mText.setValue();
+        students = new MutableLiveData<>();
+        students.setValue(Group.getGroup());
+
     }
 
-    public LiveData<String[]> getText() {
-        return mText;
+    public LiveData<Student[]> getText() {
+        return students;
     }
 }

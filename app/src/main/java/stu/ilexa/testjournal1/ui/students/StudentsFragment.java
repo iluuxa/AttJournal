@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.AdapterListUpdateCallback;
@@ -33,15 +34,24 @@ public class StudentsFragment extends Fragment {
         binding = FragmentStudentsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         RecyclerView studentsScroll = binding.studentsScroll;
-
-        Group.testInit();
-        StudentsViewAdapter stringArrayAdapter= new StudentsViewAdapter(Group.getGroup());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL,false);
+       // Group.testInit();
+        StudentsViewAdapter studentsArrayAdapter = new StudentsViewAdapter(Group.getGroup(), this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL, false);
         studentsScroll.setLayoutManager(linearLayoutManager);
-        studentsScroll.setAdapter(stringArrayAdapter);
+        studentsScroll.setAdapter(studentsArrayAdapter);
+        binding.studentAddFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = StudentFragment.newInstance();
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(getId(), fragment); // give your fragment container id in first parameter
+                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                transaction.commit();
+            }
+        });
 
         studentsViewModel.getText().observe(getViewLifecycleOwner(), s -> {
-
+            studentsArrayAdapter.notifyDataSetChanged();
         });
 
 

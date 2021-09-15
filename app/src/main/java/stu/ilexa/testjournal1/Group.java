@@ -1,7 +1,8 @@
 package stu.ilexa.testjournal1;
 
 public class Group {
-    private static Student[] group;
+    private static Student[] group= new Student[0];
+    private static final String TAG = "MyGroup";
 
 
     public static Student[] getGroup() {
@@ -14,69 +15,113 @@ public class Group {
     }
 
 
-    public static boolean add(Student student){
-        //Log.d(TAG, "add: student: " +student.getName()+"\n"+ Arrays.toString(group));
-        //Log.d(TAG, "testInit: "+student.getName()+" "+student.getOrder());
-        Student[] temp = new Student[group.length+1];
-        Student buff = student;
-        boolean ordered = false;
-        int j = 0;
-        if(student.getOrder()>0){
-            if(student.getOrder()<= group.length){
-                if (group[student.getOrder()-1].getOrder()>0
-                        &&group[student.getOrder()-1].getOrder()<= group.length)
-                {
-                    return false;
-                }
-                temp[student.getOrder()-1] = student;
-                if(student.getOrder()-1< group.length){
-                    buff = group[student.getOrder()-1];
-                }
-                ordered=true;
+    public static void groupSort(){
+        Student buff = null;
+        boolean buffered=false;
+        Student[] temp = new Student[group.length];
+        for (Student student : group) {
+            if ((student.getOrder() > 0) && (student.getOrder() <= group.length)) {
+                temp[student.getOrder() - 1] = student;
             }
         }
-
+        int j=0;
         for (int i = 0; i < group.length; i++) {
-            if(group[i].getOrder()>0
-                    &&group[i].getOrder()!=(i+1)
-                    &&group[i].getOrder()<=group.length+1)
-            {
-                temp[group[i].getOrder()-1]=group[i];
-            }
-            else {
-                if (group[i].getOrder() == (i + 1)) {
-                    temp[i] = group[i];
-                }
-                else {
-                    while ((temp[j] != null) && (j<temp.length-1)) {
-                        j++;
-                    }
-                    if(!ordered) {
-                        if (buff.compareTo(group[i]) < 0) {
-                            temp[j] = buff;
-                            buff = group[i];
-                        } else {
-                            temp[j] = group[i];
-                        }
-                    }
-                    else {
-                        temp[j]=group[i];
-                    }
+            if (!((group[i].getOrder()>0)&&(group[i].getOrder()<= group.length))){
+
+                while ((j< temp.length)&&(temp[j]!=null)){
                     j++;
                 }
+                if(j>= temp.length){group=temp;return;}
+                if(buffered){
+                    if(group[i].compareTo(buff)>0){
+                        temp[j]=buff;
+                        j++;
+                        buff=group[i];
+                    }
+                    else{
+                        temp[j]=group[i];
+                    }
+                }
+                else {
+                    buff = group[i];
+                    buffered=true;
+                }
             }
         }
-        if(j<temp.length) {
-            while ((temp[j] != null) && (j < temp.length-1)) {
-                j++;
+        while ((j< temp.length)&&(temp[j]!=null)){
+            j++;
+        }
+        if(j>= temp.length){group=temp;return;}
+        if((temp[j]==null)&&(buff!=null)){temp[j]=buff;}
+
+        group = temp;
+        /*
+        for (int i = 0; i < group.length; i++) {
+            if(group[i]!=null){
+            Log.d(TAG, "groupSort: "+(i+1)+" "+group[i].getName());}
+            else {
+                Log.d(TAG, "groupSort: Null");
             }
-            if(temp[j] == null){
-                temp[j] = buff;
+        }
+        Log.d(TAG, "groupSort: --------------------------------------------------------");*/
+    }
+
+
+    public static void add(Student student) {
+
+        Student[] temp = new Student[group.length+1];
+        System.arraycopy(group, 0, temp, 0, group.length);
+        temp[group.length]=student;
+
+
+        group=temp;
+        groupSort();
+    }
+
+
+    public static void remove(int position){
+        Student[] temp = new Student[group.length-1];
+        int shift = 0;
+        for (int i = 0; i < group.length; i++) {
+            if(i!=position){
+                temp[i-shift]=group[i];
+            }
+            else{
+                shift++;
             }
         }
 
-        group=temp;
-        return true;
+        group = temp;
+        groupSort();
+
+    }
+
+
+    public static void remove(Student student){
+        Student[] temp = new Student[group.length-1];
+        int shift = 0;
+        for (int i = 0; i < group.length; i++) {
+            if(group[i]==student){
+                temp[i-shift]=group[i];
+            }
+            else{
+                shift++;
+            }
+        }
+
+        group = temp;
+        groupSort();
+
+    }
+
+
+    public static int orderIsOccupied(int order){
+        for (int i = 0; i < Group.getGroup().length; i++) {
+            if (Group.getGroup()[i].getOrder()==order){
+                return i;
+            }
+        }
+        return -1;
     }
 
 
