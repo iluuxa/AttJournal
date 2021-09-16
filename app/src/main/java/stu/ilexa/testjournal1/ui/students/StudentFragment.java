@@ -141,20 +141,22 @@ public class StudentFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     new AlertDialog.Builder(getContext())
-                            .setTitle(getResources().getString(R.string.student_insufficient_input))
-                            .setMessage("Поля \"Фамилия\", \"Имя\" и \"Отчество\" обязательны к заполнению")
-                            .setPositiveButton(android.R.string.yes,(dialog,which) -> Group.remove(student))
+                            .setTitle(getResources().getString(R.string.student_delete_alert))
+                            .setMessage("Вы точно хотите удалить студента "+student.getName()+"?")
+                            .setPositiveButton(android.R.string.yes,(dialog,which) -> {
+                                if(student!=null){Group.remove(student);}
+                                getParentFragmentManager().popBackStack();
+                            })
                             .setNegativeButton(android.R.string.no, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
-                    Group.remove(student);
                 }
             });
             binding.studentChangeFAB.show();
             binding.studentChangeFAB.setOnClickListener(fab -> {
 
                 setHints();
-
+                binding.studentDeleteFAB.hide();
                 binding.firstNameText.setEnabled(true);
                 binding.lastNameText.setEnabled(true);
                 binding.patrynomicText.setEnabled(true);
@@ -189,6 +191,7 @@ public class StudentFragment extends Fragment {
             binding.saveButton.setVisibility(View.VISIBLE);
             binding.saveButton.setOnClickListener(saveButtonListener);
             binding.studentChangeFAB.hide();
+            binding.studentDeleteFAB.hide();
             setHints();
         }
 

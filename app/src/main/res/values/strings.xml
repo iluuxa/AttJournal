@@ -58,4 +58,5 @@
     <string name="student_insufficient_input">Недостаточный ввод</string>
     <string name="student_wrong_order_input">Номер занят</string>
     <string name="student_fragment">Студент</string>
+    <string name="student_delete_alert">Удалить?</string>
 </resources>

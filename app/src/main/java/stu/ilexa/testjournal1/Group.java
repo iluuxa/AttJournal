@@ -1,5 +1,7 @@
 package stu.ilexa.testjournal1;
 
+import android.util.Log;
+
 public class Group {
     private static Student[] group= new Student[0];
     private static final String TAG = "MyGroup";
@@ -16,6 +18,9 @@ public class Group {
 
 
     public static void groupSort(){
+        if (group.length<=1){
+            return;
+        }
         Student buff = null;
         boolean buffered=false;
         Student[] temp = new Student[group.length];
@@ -75,6 +80,7 @@ public class Group {
 
 
         group=temp;
+
         groupSort();
     }
 
@@ -98,20 +104,45 @@ public class Group {
 
 
     public static void remove(Student student){
+        if(group.length<=1){
+            group = new Student[0];
+            return;
+        }
         Student[] temp = new Student[group.length-1];
         int shift = 0;
-        for (int i = 0; i < group.length; i++) {
-            if(group[i]==student){
-                temp[i-shift]=group[i];
-            }
-            else{
+        for (int i = 0; i < group.length-1; i++) {
+            if (group[i] == student) {
                 shift++;
             }
+            temp[i]=group[i+shift];
         }
-
+        for (int i = 0; i < group.length; i++) {
+            if(group[i]!=null){
+                Log.d(TAG, "group: "+(i+1)+" "+group[i].getName());}
+            else {
+                Log.d(TAG, "group: Null");
+            }
+        }
+        Log.d(TAG, "group: --------------------------------------------------------");
         group = temp;
-        groupSort();
+        for (int i = 0; i < group.length; i++) {
+            if(group[i]!=null){
+                Log.d(TAG, "temp: "+(i+1)+" "+group[i].getName());}
+            else {
+                Log.d(TAG, "temp: Null");
+            }
+        }
+        Log.d(TAG, "temp: --------------------------------------------------------");
 
+        groupSort();
+        for (int i = 0; i < group.length; i++) {
+            if(group[i]!=null){
+                Log.d(TAG, "groupSort: "+(i+1)+" "+group[i].getName());}
+            else {
+                Log.d(TAG, "groupSort: Null");
+            }
+        }
+        Log.d(TAG, "groupSort: --------------------------------------------------------");
     }
 
 

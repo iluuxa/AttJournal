@@ -40,7 +40,7 @@ public class Subject implements Comparable{
     public Subject(String name) {
         this.name = name;
         boolean temp = Schedule.getSubjects().add(this);
-        Log.d(TAG, name+temp);
+        //Log.d(TAG, name+temp);
     }
 
 

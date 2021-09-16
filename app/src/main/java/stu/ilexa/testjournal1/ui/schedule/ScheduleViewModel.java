@@ -1,9 +1,12 @@
 package stu.ilexa.testjournal1.ui.schedule;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import stu.ilexa.testjournal1.DateControl;
 import stu.ilexa.testjournal1.Schedule;
 import stu.ilexa.testjournal1.Subject;
 
@@ -12,10 +15,15 @@ public class ScheduleViewModel extends ViewModel {
     private MutableLiveData<Subject[]> mText;
     private int selectedDay;
     private int selectedWeek;
+    private static final String TAG = "MyScheduleViewModel";
 
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();
         Schedule.testInit();
+        //mText.setValue(Schedule.getSchedule()[selectedWeek][selectedDay]);
+        //Log.d(TAG, "ScheduleViewModel: "+DateControl.getCurrentDay());
+        selectedDay=DateControl.getCurrentDay();
+        selectedWeek=DateControl.getCurrentWeek();
         mText.setValue(Schedule.getSchedule()[selectedWeek][selectedDay]);
     }
 
