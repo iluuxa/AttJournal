@@ -1,5 +1,6 @@
 package stu.ilexa.testjournal1;
 
+import android.content.res.Resources;
 import android.util.Log;
 
 import java.util.Comparator;
@@ -8,7 +9,7 @@ public class Subject implements Comparable{
     private String name;
     private boolean isLecture;
     private static final String TAG = "Subject";
-
+    private static boolean[][] attendance;
 
     public boolean getLecture() {
         return isLecture;
@@ -22,6 +23,16 @@ public class Subject implements Comparable{
 
     public String getName() {
         return name;
+    }
+
+
+    public String getFullName(){
+        if(isLecture){
+            return name+" (лк)";
+        }
+        else{
+            return name+" (пр)";
+        }
     }
 
 

@@ -10,8 +10,16 @@ public class Student implements Comparable {
     private String telephone;
     private String email;
     private int order=0;
+    private boolean[][][] attendance = new boolean[Schedule.weekCount][Schedule.weekCount][Schedule.dayCount];
 
     public Student() {
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    attendance[i][j][k]=false;
+                }
+            }
+        }
     }
 
     public Student(String lastName, String firstName, String patronymic, int order) {
@@ -19,6 +27,13 @@ public class Student implements Comparable {
         this.firstName = firstName;
         this.patronymic = patronymic;
         this.order = order;
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    attendance[i][j][k]=false;
+                }
+            }
+        }
     }
 
 
@@ -26,6 +41,13 @@ public class Student implements Comparable {
         this.lastName = lastName;
         this.firstName = firstName;
         this.patronymic = patronymic;
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    attendance[i][j][k]=false;
+                }
+            }
+        }
     }
 
     public String getName(){
@@ -84,5 +106,13 @@ public class Student implements Comparable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean getAttendance(int week, int day, int dayClass) {
+        return attendance[week][day][dayClass];
+    }
+
+    public void setAttendance(int week, int day, int dayClass, boolean isHere) {
+        this.attendance[week][day][dayClass] = isHere;
     }
 }

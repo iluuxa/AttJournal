@@ -13,6 +13,7 @@ public class StudentsViewModel extends ViewModel {
 
     public StudentsViewModel() {
         students = new MutableLiveData<>();
+        //Group.testInit();
         students.setValue(Group.getGroup());
 
     }

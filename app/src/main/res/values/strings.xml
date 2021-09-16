@@ -59,4 +59,22 @@
     <string name="student_wrong_order_input">Номер занят</string>
     <string name="student_fragment">Студент</string>
     <string name="student_delete_alert">Удалить?</string>
+    <string name="subject_null">Пусто</string>
+    <string name="lecture">лк</string>
+    <string name="practice">пр</string>
+    <string name="class_number_additional_text">-я пара</string>
+
+    <string name="month_1">Янв</string>
+    <string name="month_2">Фев</string>
+    <string name="month_3">Мар</string>
+    <string name="month_4">Апр</string>
+    <string name="month_5">Май</string>
+    <string name="month_6">Июн</string>
+    <string name="month_7">Июл</string>
+    <string name="month_8">Авг</string>
+    <string name="month_9">Сен</string>
+    <string name="month_10">Окт</string>
+    <string name="month_11">Ноя</string>
+    <string name="month_12">Дек</string>
+
 </resources>

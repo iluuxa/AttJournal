@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="stu.ilexa.testjournal1.ui.home.HomeFragment"
+        android:name="stu.ilexa.testjournal1.ui.home.AttendanceFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_attendance" />
 
     <fragment
         android:id="@+id/nav_gallery"

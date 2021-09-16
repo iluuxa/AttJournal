@@ -45,11 +45,11 @@ public class SubjectChangeViewModel extends ViewModel {
             if (weekChecks[i]) {
                 for (int j = 0; j < Schedule.dayCount; j++) {
                     for (int k = 0; k < Schedule.classCount; k++) {
-                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, subject); }
+                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, null); }
                         else{
                             Log.d(TAG, "submit: "+subject.getName());
                             if(subject==Schedule.getSchedule()[i][j][k]){
-                                Schedule.changeSubject(i,j,k,Schedule.getEmpty());
+                                Schedule.changeSubject(i,j,k,null);
                             }
                         }
                     }
@@ -65,7 +65,7 @@ public class SubjectChangeViewModel extends ViewModel {
             if (weekChecks[i]) {
                 for (int j = 0; j < Schedule.dayCount; j++) {
                     for (int k = 0; k < Schedule.classCount; k++) {
-                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, subject); }
+                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, null); }
                     }
                 }
             }
@@ -92,7 +92,7 @@ public class SubjectChangeViewModel extends ViewModel {
             if(weeks[i]){
                 for (int j = 0; j < Schedule.dayCount; j++) {
                     for (int k = 0; k < Schedule.classCount; k++) {
-                        if ((classes[j][k])&&(schedule[i][j][k]!=Schedule.getEmpty())){
+                        if ((classes[j][k])&&(schedule[i][j][k]!=null)){
                             if(schedule[i][j][k].getLecture()){
                                 changedSubjects.add(schedule[i][j][k].getName()+"(лк)");}
                             else{

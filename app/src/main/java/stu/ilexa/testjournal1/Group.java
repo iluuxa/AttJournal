@@ -2,6 +2,8 @@ package stu.ilexa.testjournal1;
 
 import android.util.Log;
 
+import java.util.Arrays;
+
 public class Group {
     private static Student[] group= new Student[0];
     private static final String TAG = "MyGroup";
@@ -16,6 +18,12 @@ public class Group {
         testInit();
     }
 
+
+    public static void groupLexSort()
+    {
+        Arrays.sort(group);
+        groupSort();
+    }
 
     public static void groupSort(){
         if (group.length<=1){
@@ -98,7 +106,8 @@ public class Group {
         }
 
         group = temp;
-        groupSort();
+
+        groupLexSort();
 
     }
 
@@ -116,33 +125,19 @@ public class Group {
             }
             temp[i]=group[i+shift];
         }
-        for (int i = 0; i < group.length; i++) {
+
+        group = temp;
+        /*for (int i = 0; i < group.length; i++) {
             if(group[i]!=null){
                 Log.d(TAG, "group: "+(i+1)+" "+group[i].getName());}
             else {
                 Log.d(TAG, "group: Null");
             }
         }
-        Log.d(TAG, "group: --------------------------------------------------------");
-        group = temp;
-        for (int i = 0; i < group.length; i++) {
-            if(group[i]!=null){
-                Log.d(TAG, "temp: "+(i+1)+" "+group[i].getName());}
-            else {
-                Log.d(TAG, "temp: Null");
-            }
-        }
-        Log.d(TAG, "temp: --------------------------------------------------------");
+        Log.d(TAG, "group: --------------------------------------------------------");*/
 
-        groupSort();
-        for (int i = 0; i < group.length; i++) {
-            if(group[i]!=null){
-                Log.d(TAG, "groupSort: "+(i+1)+" "+group[i].getName());}
-            else {
-                Log.d(TAG, "groupSort: Null");
-            }
-        }
-        Log.d(TAG, "groupSort: --------------------------------------------------------");
+        groupLexSort();
+
     }
 
 

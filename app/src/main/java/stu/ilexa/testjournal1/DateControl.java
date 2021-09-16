@@ -61,5 +61,17 @@ public class DateControl {
 
     }
 
+    public static int[] getSelectedDate(int week, int day){
+        Calendar result = (Calendar) beginning.clone();
+        result.setFirstDayOfWeek(Calendar.MONDAY);
+        if(week>=1){
+        result.add(Calendar.DAY_OF_YEAR, (week-1)*7+day+(7-(beginning.get(Calendar.DAY_OF_WEEK)-2)));}
+        else {
+            result.add(Calendar.DAY_OF_YEAR,day-(beginning.get(Calendar.DAY_OF_WEEK)-2));
+        }
+        return new int[]{result.get(Calendar.DAY_OF_MONTH),result.get(Calendar.MONTH)+1};
+    }
+
+
 
 }

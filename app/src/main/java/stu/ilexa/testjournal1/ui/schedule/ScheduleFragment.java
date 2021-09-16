@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import stu.ilexa.testjournal1.MainActivity;
+import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.Schedule;
 import stu.ilexa.testjournal1.Subject;
 import stu.ilexa.testjournal1.SubjectChange;
@@ -42,13 +43,43 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
         final TextView textViewWeekNumber = binding.textViewWeekNumber;
 
         scheduleViewModel.getText().observe(getViewLifecycleOwner(), s -> {
-            textViewSubjectSlot1.setText(s[0].getName());
-            textViewSubjectSlot2.setText(s[1].getName());
-            textViewSubjectSlot3.setText(s[2].getName());
-            textViewSubjectSlot4.setText(s[3].getName());
-            textViewSubjectSlot5.setText(s[4].getName());
-            textViewSubjectSlot6.setText(s[5].getName());
-            String concatenation = "Неделя "+(scheduleViewModel.getSelectedWeek()+1);
+            if (s[0] != null) {
+                textViewSubjectSlot1.setText(s[0].getFullName());
+            }
+            else {
+                textViewSubjectSlot1.setText(R.string.subject_null);
+            }
+            if (s[1] != null) {
+                textViewSubjectSlot2.setText(s[1].getFullName());
+            }
+            else {
+                textViewSubjectSlot2.setText(R.string.subject_null);
+            }
+            if (s[2] != null) {
+                textViewSubjectSlot3.setText(s[2].getFullName());
+            }
+            else {
+                textViewSubjectSlot3.setText(R.string.subject_null);
+            }
+            if (s[3] != null) {
+                textViewSubjectSlot4.setText(s[3].getFullName());
+            }
+            else {
+                textViewSubjectSlot4.setText(R.string.subject_null);
+            }
+            if (s[4] != null) {
+                textViewSubjectSlot5.setText(s[4].getFullName());
+            }
+            else {
+                textViewSubjectSlot5.setText(R.string.subject_null);
+            }
+            if (s[5] != null) {
+                textViewSubjectSlot6.setText(s[5].getFullName());
+            }
+            else {
+                textViewSubjectSlot6.setText(R.string.subject_null);
+            }
+            String concatenation = "Неделя " + (scheduleViewModel.getSelectedWeek() + 1);
             textViewWeekNumber.setText(concatenation);
         });
 
@@ -68,8 +99,8 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Log.d(TAG,"clicked");
-        switch ((String) view.getTag()){
+        Log.d(TAG, "clicked");
+        switch ((String) view.getTag()) {
             case "buttonWeekDay1":
                 scheduleViewModel.setSelectedDay(0);
                 break;

@@ -1,6 +1,7 @@
 package stu.ilexa.testjournal1;
 
-import java.util.HashSet;
+import androidx.annotation.Nullable;
+
 import java.util.TreeSet;
 
 public class Schedule{
@@ -9,7 +10,6 @@ public class Schedule{
     public final static int classCount = 6;
     private static Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
     private static TreeSet<Subject> subjects = new TreeSet<>();
-    private static Subject empty = new Subject("None");
 
     /**
      * Инициализация и обнуление расписания
@@ -18,7 +18,7 @@ public class Schedule{
         for(int i=0;i<schedule.length;i++){
             for(int j=0;j<schedule[i].length;j++){
                 for(int k=0;k<schedule[j].length;k++){
-                    schedule[i][j][k]=Schedule.empty;
+                    schedule[i][j][k]=null;
                 }
             }
         }
@@ -62,7 +62,7 @@ public class Schedule{
                 schedule[i][0][2]=subj10;
                 schedule[i][1][3]=subj1;
                 schedule[i][3][0]=subj6;
-                schedule[i][5][4]= subj8;
+                schedule[i][5][4]= subj7;
             }
         }
     }
@@ -72,11 +72,73 @@ public class Schedule{
     }
 
 
-    public static Subject getEmpty() {
-        return empty;
+    public static int[] getLastClass(){
+        int i = DateControl.getCurrentWeek();
+        int j = DateControl.getCurrentDay();
+        int k = DateControl.getCurrentClass();
+        for (;i>=0;i--){
+            for (;j>=0;j--){
+                for (;k>=0;k--){
+                    if (schedule[i][j][k]!=null)
+                    {return new int[]{i,j,k};}
+                }
+            }
+        }
+        return getFutureClass();
     }
 
-    public static void changeSubject(int week, int day, int dayClass, Subject subject){
+
+    public static int[] getPreviousClass(int week, int day, int dayClass){
+        int j = day;
+        int k = dayClass-1;
+        for (int i = week;i>=0;i--){
+            for (;j>=0;j--){
+                for (;k>=0;k--){
+                    if (schedule[i][j][k]!=null)
+                    {return new int[]{i,j,k};}
+                }
+                k=classCount-1;
+            }
+            j=dayCount-1;
+        }
+        return null;
+    }
+
+
+    public static int[] getNextClass(int week, int day, int dayClass){
+        int j = day;
+        int k = dayClass+1;
+        for (int i = week;i<weekCount;i++){
+            for (;j<dayCount;j++){
+                for (;k<classCount;k++){
+                    if (schedule[i][j][k]!=null)
+                    {return new int[]{i,j,k};}
+                }
+                k=0;
+            }
+            j=0;
+        }
+        return null;
+    }
+
+
+    public static int[] getFutureClass(){
+        int i = DateControl.getCurrentWeek();
+        int j = DateControl.getCurrentDay();
+        int k = DateControl.getCurrentClass();
+        for (;i<weekCount;i++){
+            for (;j<dayCount;j++){
+                for (;k<classCount;k++){
+                    if (schedule[i][j][k]!=null)
+                    {return new int[]{i,j,k};}
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public static void changeSubject(int week, int day, int dayClass,@Nullable Subject subject){
         Schedule.schedule[week][day][dayClass]=subject;
     }
 

@@ -34,7 +34,7 @@ public class StudentsFragment extends Fragment {
         binding = FragmentStudentsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         RecyclerView studentsScroll = binding.studentsScroll;
-       // Group.testInit();
+
         StudentsViewAdapter studentsArrayAdapter = new StudentsViewAdapter(Group.getGroup(), this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL, false);
         studentsScroll.setLayoutManager(linearLayoutManager);

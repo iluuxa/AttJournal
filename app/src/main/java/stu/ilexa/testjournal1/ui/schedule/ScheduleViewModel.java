@@ -19,7 +19,7 @@ public class ScheduleViewModel extends ViewModel {
 
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();
-        Schedule.testInit();
+        //Schedule.testInit();
         //mText.setValue(Schedule.getSchedule()[selectedWeek][selectedDay]);
         //Log.d(TAG, "ScheduleViewModel: "+DateControl.getCurrentDay());
         selectedDay=DateControl.getCurrentDay();
