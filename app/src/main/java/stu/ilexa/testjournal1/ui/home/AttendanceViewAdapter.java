@@ -54,19 +54,16 @@ public class AttendanceViewAdapter extends RecyclerView.Adapter<AttendanceViewAd
         else {
             holder.checkedName.setChecked(false);
         }
-        View.OnClickListener onClickListener= new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(student.getAttendance(week,day,currentClass)){
-                    student.setAttendance(week,day,currentClass,false);
-                    holder.checkedName.setChecked(false);
-                }
-                else {
-                    student.setAttendance(week,day,currentClass,true);
-                    holder.checkedName.setChecked(true);
-                }
-                notifyItemChanged(holder.getBindingAdapterPosition());
+        View.OnClickListener onClickListener = view -> {
+            if(student.getAttendance(week,day,currentClass)){
+                student.setAttendance(week,day,currentClass,false);
+                holder.checkedName.setChecked(false);
             }
+            else {
+                student.setAttendance(week,day,currentClass,true);
+                holder.checkedName.setChecked(true);
+            }
+            notifyItemChanged(holder.getBindingAdapterPosition());
         };
         holder.linearLayout.setOnClickListener(onClickListener);
         holder.checkedName.setOnClickListener(onClickListener);
@@ -100,6 +97,7 @@ public class AttendanceViewAdapter extends RecyclerView.Adapter<AttendanceViewAd
         private TextView number;
         private LinearLayout linearLayout;
 
+        //TODO: optimize with public Student student;
         public ViewHolder(View itemView) {
             super(itemView);
             checkedName = (CheckBox) itemView.findViewById(R.id.attendance_list_item_checkbox);

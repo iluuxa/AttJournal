@@ -5,7 +5,7 @@
     android:id="@+id/subject_change"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubjectChange">
+    tools:context=".MainActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"

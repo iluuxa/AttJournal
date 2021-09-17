@@ -23,15 +23,17 @@ public class AttendanceFragment extends Fragment {
 
     private AttendanceViewModel attendanceViewModel;
     private FragmentAttendanceBinding binding;
+    private AttendanceViewAdapter attendanceViewAdapter;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         attendanceViewModel =
                 new ViewModelProvider(this).get(AttendanceViewModel.class);
-
+        if(attendanceViewAdapter==null){attendanceViewAdapter = attendanceViewModel.getAttendanceViewAdapter();}
         binding = FragmentAttendanceBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        AttendanceViewAdapter attendanceViewAdapter = new AttendanceViewAdapter(Group.getGroup());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         binding.AttendanceList.setAdapter(attendanceViewAdapter);
         binding.AttendanceList.setLayoutManager(linearLayoutManager);

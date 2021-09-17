@@ -438,7 +438,7 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
         else {
             subjectChangeViewModel.submit(binding.subjectInputField.getText().toString(), binding.subjectTypeInputField.getText().toString(), weekChecks, classChecks);
         }
-        NavUtils.navigateUpFromSameTask(requireActivity());
+        getParentFragmentManager().popBackStack();
     }
 
 }

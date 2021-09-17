@@ -12,6 +12,7 @@ import stu.ilexa.testjournal1.Student;
 public class AttendanceViewModel extends ViewModel {
 
     private MutableLiveData<int[]> index;
+    private AttendanceViewAdapter attendanceViewAdapter = new AttendanceViewAdapter(Group.getGroup());
 
     public AttendanceViewModel() {
         index = new MutableLiveData<>();
@@ -24,6 +25,12 @@ public class AttendanceViewModel extends ViewModel {
         }
 
     }
+
+
+    public AttendanceViewAdapter getAttendanceViewAdapter() {
+        return attendanceViewAdapter;
+    }
+
 
     public LiveData<int[]> getIndex() {
         return index;

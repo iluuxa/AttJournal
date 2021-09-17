@@ -76,5 +76,9 @@
     <string name="month_10">Окт</string>
     <string name="month_11">Ноя</string>
     <string name="month_12">Дек</string>
+    <string name="menu_tables">Таблицы</string>
+    <string name="menu_date_control">Управление временем</string>
+    <string name="tables_fragment">Таблицы</string>
+    <string name="date_control_fragment">Управление временем</string>
 
 </resources>

@@ -18,6 +18,7 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/content_student.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_attendance.xml" value="0.33" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_collision_alert.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_date_control.xml" value="0.19322916666666667" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_first.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_gallery.xml" value="0.33" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_group.xml" value="0.2015625" />
@@ -28,6 +29,9 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_student.xml" value="0.2938388625592417" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_students.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_tables.xml" value="0.190625" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_tables_list.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/fragment_tables_list_item.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/nav_header_main.xml" value="0.1661600810536981" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/schedule_fab.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/TestJournal1/app/src/main/res/layout/student_list_item.xml" value="0.19322916666666667" />

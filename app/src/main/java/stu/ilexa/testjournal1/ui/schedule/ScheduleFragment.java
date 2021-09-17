@@ -1,6 +1,5 @@
 package stu.ilexa.testjournal1.ui.schedule;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,16 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import stu.ilexa.testjournal1.MainActivity;
 import stu.ilexa.testjournal1.R;
-import stu.ilexa.testjournal1.Schedule;
-import stu.ilexa.testjournal1.Subject;
-import stu.ilexa.testjournal1.SubjectChange;
 import stu.ilexa.testjournal1.databinding.FragmentScheduleBinding;
+import stu.ilexa.testjournal1.ui.change.SubjectChangeFragment;
 
 public class ScheduleFragment extends Fragment implements View.OnClickListener {
 
@@ -126,9 +122,11 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
                 scheduleViewModel.decrementSelectedWeek();
                 break;
             case "addSubjectFAB":
-                Log.d(TAG, "onClick: FAB");
-                Intent intent = new Intent(getActivity(), SubjectChange.class);
-                startActivity(intent);
+                Fragment fragment = SubjectChangeFragment.newInstance();
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(getId(), fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
                 break;
 
         }

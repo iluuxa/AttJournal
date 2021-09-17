@@ -25,9 +25,15 @@
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
-        android:id="@+id/student_fragment"
-        android:tag="StudentFragment"
-        android:name="stu.ilexa.testjournal1.ui.students.StudentFragment"
-        android:label="@string/student_fragment"
-        tools:layout="@layout/fragment_student"/>
+        android:id="@+id/nav_tables"
+        android:tag="TablesFragment"
+        android:name="stu.ilexa.testjournal1.ui.tables.TablesFragment"
+        android:label="@string/tables_fragment"
+        tools:layout="@layout/fragment_tables"/>
+    <fragment
+        android:id="@+id/nav_date_control"
+        android:tag="DateControlFragment"
+        android:name="stu.ilexa.testjournal1.ui.datecontol.DateControlFragment"
+        android:label="@string/date_control_fragment"
+        tools:layout="@layout/fragment_date_control"/>
 </navigation>
