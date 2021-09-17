@@ -142,7 +142,7 @@ public class StudentFragment extends Fragment {
                 public void onClick(View view) {
                     new AlertDialog.Builder(getContext())
                             .setTitle(getResources().getString(R.string.student_delete_alert))
-                            .setMessage("Вы точно хотите удалить студента "+student.getName()+"?")
+                            .setMessage("Вы точно хотите удалить студента "+student.getName()+"? Это действие нельзя будет отменить.")
                             .setPositiveButton(android.R.string.yes,(dialog,which) -> {
                                 if(student!=null){Group.remove(student);}
                                 getParentFragmentManager().popBackStack();

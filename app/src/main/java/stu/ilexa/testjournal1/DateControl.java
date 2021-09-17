@@ -29,7 +29,7 @@ public class DateControl {
         int sub = now.get(Calendar.WEEK_OF_YEAR) - beginning.get(Calendar.WEEK_OF_YEAR);
         Log.d(TAG, "getCurrentWeek: "+sub);
         if(sub<0){return 0;}
-        if(sub>15){return 15;}
+        if(sub>(Schedule.weekCount-1)){return Schedule.weekCount-1;}
         return sub;
 
     }
@@ -38,7 +38,7 @@ public class DateControl {
         Calendar now = Calendar.getInstance();
         int res = now.get(Calendar.DAY_OF_WEEK)-2;
         Log.d(TAG, "getCurrentDay: "+res);
-        if(res<0){return 5;}
+        if(res<0){return Schedule.dayCount-1;}
         else {
             return res;
         }

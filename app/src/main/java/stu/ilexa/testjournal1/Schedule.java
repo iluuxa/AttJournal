@@ -8,8 +8,8 @@ public class Schedule{
     public final static int weekCount = 16;
     public final static int dayCount = 6;
     public final static int classCount = 6;
-    private static Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
-    private static TreeSet<Subject> subjects = new TreeSet<>();
+    private static final Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
+    private static final TreeSet<Subject> subjects = new TreeSet<>();
 
     /**
      * Инициализация и обнуление расписания
@@ -22,6 +22,44 @@ public class Schedule{
                 }
             }
         }
+    }
+
+    public static boolean[] findSubjectWeeks(Subject subject){
+        boolean[] tempWeeks = new boolean[Schedule.weekCount];
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            tempWeeks[i]=false;
+        }
+
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    if (subject == schedule[i][j][k]) {
+                        tempWeeks[i] = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return tempWeeks;
+    }
+
+
+    public static void rewriteSubject(Subject subject, boolean[] weekChecks, boolean[][] classChecks){
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            if (weekChecks[i]) {
+                for (int j = 0; j < Schedule.dayCount; j++) {
+                    for (int k = 0; k < Schedule.classCount; k++) {
+                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, subject); }
+                        else{
+                            if(subject==Schedule.getSchedule()[i][j][k]){
+                                Schedule.changeSubject(i,j,k,null);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     public static void testInit(){

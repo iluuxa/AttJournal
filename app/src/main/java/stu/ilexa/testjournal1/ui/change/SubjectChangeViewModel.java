@@ -23,53 +23,21 @@ public class SubjectChangeViewModel extends ViewModel {
 
     public void findChecks(Subject object){
         checksClear();
-        boolean[] tempWeeks = new boolean[Schedule.weekCount];
-        Subject[][][] schedule = Schedule.getSchedule();
-        for (int i = 0; i < Schedule.weekCount; i++) {
-            for (int j = 0; j < Schedule.dayCount; j++) {
-                for (int k = 0; k < Schedule.classCount; k++) {
-                    if(object == schedule[i][j][k]){
-                        Log.d(TAG, "findChecks: "+object.getName()+i+j+k);
-                        tempWeeks[i]=true;
-                    }
-                }
-            }
-        }
-        weekChecks.setValue(tempWeeks);
+        weekChecks.setValue(Schedule.findSubjectWeeks(object));
 
     }
 
 
     public void submit(Subject subject, boolean[] weekChecks, boolean[][] classChecks){
-        for (int i = 0; i < Schedule.weekCount; i++) {
-            if (weekChecks[i]) {
-                for (int j = 0; j < Schedule.dayCount; j++) {
-                    for (int k = 0; k < Schedule.classCount; k++) {
-                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, null); }
-                        else{
-                            Log.d(TAG, "submit: "+subject.getName());
-                            if(subject==Schedule.getSchedule()[i][j][k]){
-                                Schedule.changeSubject(i,j,k,null);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        Schedule.rewriteSubject(subject,weekChecks,classChecks);
 
     }
+
+
     public void submit(String name, String type,  boolean[] weekChecks, boolean[][] classChecks){
         boolean temp = !type.equals("пр");
         Subject subject = new Subject(name, temp);
-        for (int i = 0; i < Schedule.weekCount; i++) {
-            if (weekChecks[i]) {
-                for (int j = 0; j < Schedule.dayCount; j++) {
-                    for (int k = 0; k < Schedule.classCount; k++) {
-                        if (classChecks[j][k]) { Schedule.changeSubject(i, j, k, null); }
-                    }
-                }
-            }
-        }
+        Schedule.rewriteSubject(subject,weekChecks,classChecks);
 
     }
 
