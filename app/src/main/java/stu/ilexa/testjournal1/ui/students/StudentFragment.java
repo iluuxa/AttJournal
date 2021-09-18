@@ -16,11 +16,7 @@ import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.Student;
 import stu.ilexa.testjournal1.databinding.FragmentStudentBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link StudentFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class StudentFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,14 +30,7 @@ public class StudentFragment extends Fragment {
     public StudentFragment() {
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param groupIdentifier Parameter 1.
-     * @return A new instance of fragment StudentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static StudentFragment newInstance(int groupIdentifier) {
         StudentFragment fragment = new StudentFragment();
         Bundle args = new Bundle();

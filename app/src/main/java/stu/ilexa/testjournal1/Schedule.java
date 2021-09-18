@@ -2,6 +2,7 @@ package stu.ilexa.testjournal1;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Schedule{
@@ -173,6 +174,21 @@ public class Schedule{
             }
         }
         return null;
+    }
+
+
+    public static ArrayList<int[]> getSubjectDates(Subject subject){
+        ArrayList<int[]> dates= new ArrayList<>();
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    if(subject==schedule[i][j][k]){
+                        dates.add(DateControl.getSelectedDate(i,j));
+                    }
+                }
+            }
+        }
+        return dates;
     }
 
 

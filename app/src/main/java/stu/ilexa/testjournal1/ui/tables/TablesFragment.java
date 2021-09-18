@@ -58,7 +58,7 @@ public class TablesFragment extends Fragment {
             else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new SubjectRecyclerViewAdapter(Schedule.getSubjects().toArray(new Subject[0])));
+            recyclerView.setAdapter(new SubjectRecyclerViewAdapter(Schedule.getSubjects().toArray(new Subject[0]),this));
         }
         return view;
     }

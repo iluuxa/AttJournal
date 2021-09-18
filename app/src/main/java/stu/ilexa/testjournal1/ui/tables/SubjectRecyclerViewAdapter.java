@@ -17,10 +17,12 @@ import stu.ilexa.testjournal1.ui.change.SubjectChangeFragment;
 public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<SubjectRecyclerViewAdapter.ViewHolder> {
 
     private final Subject[] subjects;
+    private Fragment rootFragment;
 
 
-    public SubjectRecyclerViewAdapter(Subject[] subjects) {
+    public SubjectRecyclerViewAdapter(Subject[] subjects, Fragment rootFragment) {
         this.subjects = subjects;
+        this.rootFragment = rootFragment;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<SubjectRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.subjectName.setText(subjects[position].getName());
-        int x;
+        int x=position;
         if(subjects[position].getLecture()) {
             holder.subjectType.setText("лк");
         }
@@ -43,9 +45,9 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<SubjectRecy
         holder.subjectType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = SubjectChangeFragment.newInstance();
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(getId(), fragment);
+                Fragment fragment = TableFragment.newInstance(x);
+                FragmentTransaction transaction = rootFragment.getParentFragmentManager().beginTransaction();
+                transaction.replace(rootFragment.getId(), fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
