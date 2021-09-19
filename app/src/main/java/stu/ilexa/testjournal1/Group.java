@@ -151,6 +151,11 @@ public class Group {
     }
 
 
+    public static Student getStudent(int position){
+        return group[position];
+    }
+
+
     public static void testInit(){
         group = new Student[0];
         add(new Student("Акопян","Максим","Игоревич"));

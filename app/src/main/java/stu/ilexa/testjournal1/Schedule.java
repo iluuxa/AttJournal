@@ -192,6 +192,21 @@ public class Schedule{
     }
 
 
+    public static ArrayList<int[]> getSubjectIndex(Subject subject){
+        ArrayList<int[]> dates= new ArrayList<>();
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    if(subject==schedule[i][j][k]){
+                        dates.add(new int[]{i,j,k});
+                    }
+                }
+            }
+        }
+        return dates;
+    }
+
+
     public static void changeSubject(int week, int day, int dayClass,@Nullable Subject subject){
         Schedule.schedule[week][day][dayClass]=subject;
     }

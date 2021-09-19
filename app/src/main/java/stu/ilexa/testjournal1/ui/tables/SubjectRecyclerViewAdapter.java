@@ -42,15 +42,12 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<SubjectRecy
         else {
             holder.subjectType.setText("пр");
         }
-        holder.subjectType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = TableFragment.newInstance(x);
-                FragmentTransaction transaction = rootFragment.getParentFragmentManager().beginTransaction();
-                transaction.replace(rootFragment.getId(), fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
+        holder.subjectType.setOnClickListener(view -> {
+            Fragment fragment = TableFragment.newInstance(x);
+            FragmentTransaction transaction = rootFragment.getParentFragmentManager().beginTransaction();
+            transaction.replace(rootFragment.getId(), fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
     }
 
