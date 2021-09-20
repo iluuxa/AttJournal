@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Schedule.testInit();
-        Group.testInit();
+        //Schedule.testInit();
+        //Group.testInit();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

@@ -80,7 +80,15 @@
     <string name="menu_date_control">Управление временем</string>
     <string name="tables_fragment">Таблицы</string>
     <string name="date_control_fragment">Управление временем</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date">Дата начала семестра: </string>
+    <string name="change">изменить</string>
+    <string name="time">Время начала первой пары: </string>
+    <string name="break_duration">Длительность перерыва (в минутах): </string>
+    <string name="big_break_duration">Длительность большого перерыва (в минутах):</string>
+    <string name="big_break_after">Большие перемены после: </string>
+    <string name="class_duration">Длительность пар: </string>
+    <string name="eraseScheduleButtonText">Стереть расписание</string>
+    <string name="save">Сохранить</string>
 
 </resources>

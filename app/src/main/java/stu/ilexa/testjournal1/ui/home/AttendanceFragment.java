@@ -114,7 +114,11 @@ public class AttendanceFragment extends Fragment {
         }
         String classText = (1+index[2])+getResources().getString(R.string.class_number_additional_text);
         binding.AttendanceListClass.setText(classText);
-        binding.AttendanceListSubjectName.setText(Schedule.getSchedule()[index[0]][index[1]][index[2]].getFullName());
+        if(Schedule.getSchedule()[index[0]][index[1]][index[2]]!=null){
+        binding.AttendanceListSubjectName.setText(Schedule.getSchedule()[index[0]][index[1]][index[2]].getFullName());}
+        else{
+            binding.AttendanceListSubjectName.setText(getResources().getString(R.string.subject_null));
+        }
     }
 
 

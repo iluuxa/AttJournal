@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import stu.ilexa.testjournal1.DateControl;
 import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.databinding.FragmentScheduleBinding;
 import stu.ilexa.testjournal1.ui.change.SubjectChangeFragment;
@@ -29,6 +30,19 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
 
         binding = FragmentScheduleBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        binding.textViewLessonStart1.setText(DateControl.minutesToTimeFormat(DateControl.getClassStartTime(0)));
+        binding.textViewLessonStart2.setText(DateControl.minutesToTimeFormat(DateControl.getClassStartTime(1)));
+        binding.textViewLessonStart3.setText(DateControl.minutesToTimeFormat(DateControl.getClassStartTime(2)));
+        binding.textViewLessonStart4.setText(DateControl.minutesToTimeFormat(DateControl.getClassStartTime(3)));
+        binding.textViewLessonStart5.setText(DateControl.minutesToTimeFormat(DateControl.getClassStartTime(4)));
+        binding.textViewLessonStart6.setText(DateControl.minutesToTimeFormat(DateControl.getClassStartTime(5)));
+        binding.textViewLessonEnd1.setText(DateControl.minutesToTimeFormat(DateControl.getClassEndTime(0)));
+        binding.textViewLessonEnd2.setText(DateControl.minutesToTimeFormat(DateControl.getClassEndTime(1)));
+        binding.textViewLessonEnd3.setText(DateControl.minutesToTimeFormat(DateControl.getClassEndTime(2)));
+        binding.textViewLessonEnd4.setText(DateControl.minutesToTimeFormat(DateControl.getClassEndTime(3)));
+        binding.textViewLessonEnd5.setText(DateControl.minutesToTimeFormat(DateControl.getClassEndTime(4)));
+        binding.textViewLessonEnd6.setText(DateControl.minutesToTimeFormat(DateControl.getClassEndTime(5)));
 
         final TextView textViewSubjectSlot1 = binding.textViewSubjectSlot1;
         final TextView textViewSubjectSlot2 = binding.textViewSubjectSlot2;
@@ -137,4 +151,5 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
         binding = null;
     }
+
 }
