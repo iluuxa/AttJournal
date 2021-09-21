@@ -125,8 +125,8 @@ public class StudentFragment extends Fragment {
         if (student != null) {
             Log.d(TAG, "onCreateView: " + student.getName());
             binding.saveButton.setVisibility(View.INVISIBLE);
-            binding.studentDeleteFAB.show();
-            binding.studentDeleteFAB.setOnClickListener(new View.OnClickListener() {
+            binding.studentDeleteFab.show();
+            binding.studentDeleteFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     new AlertDialog.Builder(getContext())
@@ -141,19 +141,19 @@ public class StudentFragment extends Fragment {
                             .show();
                 }
             });
-            binding.studentChangeFAB.show();
-            binding.studentChangeFAB.setOnClickListener(fab -> {
+            binding.studentChangeFab.show();
+            binding.studentDeleteFab.setOnClickListener(fab -> {
 
                 setHints();
-                binding.studentDeleteFAB.hide();
+                binding.studentDeleteFab.hide();
                 binding.firstNameText.setEnabled(true);
                 binding.lastNameText.setEnabled(true);
                 binding.patrynomicText.setEnabled(true);
                 binding.orderNumber.setEnabled(true);
                 binding.telephoneNumber.setEnabled(true);
                 binding.emailText.setEnabled(true);
-                //binding.studentChangeFAB.setVisibility(View.INVISIBLE);
-                binding.studentChangeFAB.hide();
+                //binding.studentChangeFab.setVisibility(View.INVISIBLE);
+                binding.studentChangeFab.hide();
                 binding.saveButton.setVisibility(View.VISIBLE);
                 binding.saveButton.setOnClickListener(saveButtonListener);
             });
@@ -179,8 +179,8 @@ public class StudentFragment extends Fragment {
         } else {
             binding.saveButton.setVisibility(View.VISIBLE);
             binding.saveButton.setOnClickListener(saveButtonListener);
-            binding.studentChangeFAB.hide();
-            binding.studentDeleteFAB.hide();
+            binding.studentChangeFab.hide();
+            binding.studentDeleteFab.hide();
             setHints();
         }
 

@@ -3,6 +3,8 @@ package stu.ilexa.testjournal1;
 import android.content.res.Resources;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.util.Comparator;
 
 public class Subject implements Comparable{
@@ -59,5 +61,14 @@ public class Subject implements Comparable{
     public int compareTo(Object o) {
         Subject temp = (Subject) o;
         return (this.name+this.isLecture).compareTo(temp.getName()+temp.isLecture);
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if((obj==null)||(obj.getClass()!=Subject.class)){return false;}
+        if(((Subject)(obj)).getFullName().equals(this.getFullName())){
+            return true;
+        }
+        else {return false;}
     }
 }

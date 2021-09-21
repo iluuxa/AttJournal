@@ -4,27 +4,21 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import stu.ilexa.testjournal1.DateControl;
 import stu.ilexa.testjournal1.Group;
 import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.Schedule;
-import stu.ilexa.testjournal1.databinding.FragmentAttendanceBinding;
 import stu.ilexa.testjournal1.databinding.FragmentDateControlBinding;
 
 
@@ -149,5 +143,7 @@ public class DateControlFragment extends Fragment {
 
         return root;
     }
+
+
 
 }

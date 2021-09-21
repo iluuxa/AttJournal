@@ -18,6 +18,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/subject_name" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,53 +62,11 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <LinearLayout
-                style='"style="?android:attr/buttonBarStyle"'
+            <TextView
+                android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checkableBehavior="single"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/subjectAddAll"
-
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:tag="subjectAddAll"
-                    android:text="@string/all_weeks" />
-
-                <Button
-                    android:id="@+id/subjectAddEven"
-
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:tag="subjectAddEven"
-                    android:text="@string/even_weeks" />
-
-                <Button
-                    android:id="@+id/subjectAddOdd"
-
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:tag="subjectAddOdd"
-                    android:text="@string/odd_weeks" />
-
-                <Button
-                    android:id="@+id/subjectAddClear"
-
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:tag="subjectAddClear"
-                    android:text="@string/clear_weeks" />
-            </LinearLayout>
+                android:text="@string/subject_weeks" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -263,6 +227,60 @@
                 </TableRow>
 
             </TableLayout>
+
+            <LinearLayout
+                style='"style="?android:attr/buttonBarStyle"'
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkableBehavior="single"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/subjectAddAll"
+
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="subjectAddAll"
+                    android:text="@string/all_weeks" />
+
+                <Button
+                    android:id="@+id/subjectAddEven"
+
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="subjectAddEven"
+                    android:text="@string/even_weeks" />
+
+                <Button
+                    android:id="@+id/subjectAddOdd"
+
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="subjectAddOdd"
+                    android:text="@string/odd_weeks" />
+
+                <Button
+                    android:id="@+id/subjectAddClear"
+
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="subjectAddClear"
+                    android:text="@string/clear_weeks" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/subject_days" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -600,6 +618,20 @@
                     android:layout_height="match_parent">
 
                     <ToggleButton
+                        android:id="@+id/subjectAddDay1Class4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:checkable="true"
+                        android:minWidth="48dp"
+
+                        android:tag="subjectAddDay1Class4"
+
+                        android:textOff="4"
+                        android:textOn="4" />
+
+                    <ToggleButton
                         android:id="@+id/subjectAddDay2Class4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -624,20 +656,6 @@
 
                         android:minWidth="48dp"
                         android:tag="subjectAddDay3Class4"
-                        android:textOff="4"
-                        android:textOn="4" />
-
-                    <ToggleButton
-                        android:id="@+id/subjectAddDay1Class4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
-                        android:checkable="true"
-                        android:minWidth="48dp"
-
-                        android:tag="subjectAddDay1Class4"
-
                         android:textOff="4"
                         android:textOn="4" />
 

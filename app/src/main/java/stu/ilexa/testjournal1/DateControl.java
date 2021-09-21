@@ -21,6 +21,19 @@ public class DateControl {
     public DateControl() {
     }
 
+    public static void importSaveData(int firstDay,int firstMonth,int firstYear,int classBeginningHour,int classBeginningMinute,int classDuration,int breakDurationMinute,int bigBreakDurationMinute,Integer[] bigBreakAfterClass){
+        DateControl.setFirstDay(firstDay);
+        DateControl.setFirstMonth(firstMonth);
+        DateControl.setFirstYear(firstYear);
+        DateControl.setClassBeginningHour(classBeginningHour);
+        DateControl.setClassBeginningMinute(classBeginningMinute);
+        DateControl.setClassDuration(classDuration);
+        DateControl.setBreakDurationMinute(breakDurationMinute);
+        DateControl.setBigBreakDurationMinute(bigBreakDurationMinute);
+        DateControl.setBigBreakAfterClass(bigBreakAfterClass);
+
+    }
+
     public static int getCurrentWeek(){
         Calendar now = Calendar.getInstance();
         beginning.setFirstDayOfWeek(Calendar.MONDAY);

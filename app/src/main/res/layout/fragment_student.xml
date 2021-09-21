@@ -29,6 +29,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lastNameText"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -45,6 +46,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/firstNameText"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -63,6 +65,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/patrynomicText"
                     android:layout_width="match_parent"
+                    android:inputType="text"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,6 +114,7 @@
                     android:id="@+id/emailText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
                     android:autoLink="email" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +142,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/studentDeleteFAB"
+            android:id="@+id/student_delete_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
@@ -147,7 +151,7 @@
             android:tag="deleteStudentFAB" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/studentChangeFAB"
+            android:id="@+id/student_change_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"

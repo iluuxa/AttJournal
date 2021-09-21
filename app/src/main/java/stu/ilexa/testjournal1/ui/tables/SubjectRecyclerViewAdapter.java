@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import stu.ilexa.testjournal1.Subject;
@@ -42,13 +43,19 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<SubjectRecy
         else {
             holder.subjectType.setText("пр");
         }
-        holder.subjectType.setOnClickListener(view -> {
-            Fragment fragment = TableFragment.newInstance(x);
-            FragmentTransaction transaction = rootFragment.getParentFragmentManager().beginTransaction();
-            transaction.replace(rootFragment.getId(), fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        });
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = TableFragment.newInstance(x);
+                FragmentTransaction transaction = rootFragment.getParentFragmentManager().beginTransaction();
+                transaction.replace(rootFragment.getId(), fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        };
+        holder.subjectType.setOnClickListener(onClickListener);
+        holder.subjectName.setOnClickListener(onClickListener);
+        holder.linearLayout.setOnClickListener(onClickListener);
     }
 
     @Override
@@ -59,11 +66,13 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<SubjectRecy
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView subjectType;
         public final TextView subjectName;
+        public final LinearLayout linearLayout;
 
         public ViewHolder(FragmentTablesListItemBinding binding) {
             super(binding.getRoot());
             subjectName = binding.subjectNameTextView;
             subjectType = binding.subjectTypeTextView;
+            linearLayout = binding.subjectLayout;
         }
 
         @Override

@@ -1,5 +1,7 @@
 package stu.ilexa.testjournal1;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -9,8 +11,9 @@ public class Schedule{
     public final static int weekCount = 16;
     public final static int dayCount = 6;
     public final static int classCount = 6;
-    private static final Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
-    private static final TreeSet<Subject> subjects = new TreeSet<>();
+    public final static String TAG = "MySchedule";
+    private static Subject[][][] schedule = new Subject[weekCount][dayCount][classCount];
+    private static TreeSet<Subject> subjects = new TreeSet<>();
 
     /**
      * Инициализация и обнуление расписания
@@ -23,6 +26,38 @@ public class Schedule{
                 }
             }
         }
+    }
+
+    public static void importSaveData(Subject[][][] schedule){
+        Schedule.subjects=new TreeSet<>();
+        Schedule.schedule = schedule;
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    if(schedule[i][j][k]!=null){
+                        subjects.add(schedule[i][j][k]);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < subjects.size(); i++) {
+            Log.d(TAG, "importSaveData: "+subjects.toArray(new Subject[0])[i].getName());
+        }
+
+    }
+
+
+    public static void removeSubject(Subject subject){
+        for (int i = 0; i < Schedule.weekCount; i++) {
+            for (int j = 0; j < Schedule.dayCount; j++) {
+                for (int k = 0; k < Schedule.classCount; k++) {
+                    if (subject.equals(schedule[i][j][k])) {
+                        schedule[i][j][k]=null;
+                    }
+                }
+            }
+        }
+        subjects.remove(subject);
     }
 
     public static boolean[] findSubjectWeeks(Subject subject){
@@ -182,7 +217,7 @@ public class Schedule{
         for (int i = 0; i < Schedule.weekCount; i++) {
             for (int j = 0; j < Schedule.dayCount; j++) {
                 for (int k = 0; k < Schedule.classCount; k++) {
-                    if(subject==schedule[i][j][k]){
+                    if(subject.equals(schedule[i][j][k])){
                         dates.add(DateControl.getSelectedDate(i,j));
                     }
                 }
@@ -197,7 +232,7 @@ public class Schedule{
         for (int i = 0; i < Schedule.weekCount; i++) {
             for (int j = 0; j < Schedule.dayCount; j++) {
                 for (int k = 0; k < Schedule.classCount; k++) {
-                    if(subject==schedule[i][j][k]){
+                    if(subject.equals(schedule[i][j][k])){
                         dates.add(new int[]{i,j,k});
                     }
                 }

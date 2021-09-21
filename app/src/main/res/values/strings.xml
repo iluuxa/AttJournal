@@ -90,5 +90,10 @@
     <string name="class_duration">Длительность пар: </string>
     <string name="eraseScheduleButtonText">Стереть расписание</string>
     <string name="save">Сохранить</string>
+    <string name="action_help">Справка</string>
+    <string name="help" />
+    <string name="subject_name">Название предмета</string>
+    <string name="subject_weeks">Выберите недели</string>
+    <string name="subject_days">Отметьте пары предмета для выбранных недель</string>
 
 </resources>

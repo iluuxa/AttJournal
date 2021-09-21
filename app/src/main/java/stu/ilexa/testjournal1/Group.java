@@ -15,7 +15,11 @@ public class Group {
 
 
     public Group() {
-        testInit();
+    }
+
+
+    public static void importSaveData(Student[] group){
+        Group.group=group;
     }
 
 

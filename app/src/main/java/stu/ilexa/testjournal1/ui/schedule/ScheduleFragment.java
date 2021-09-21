@@ -1,5 +1,6 @@
 package stu.ilexa.testjournal1.ui.schedule;
 
+import android.app.UiAutomation;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import stu.ilexa.testjournal1.DateControl;
 import stu.ilexa.testjournal1.R;
+import stu.ilexa.testjournal1.Schedule;
 import stu.ilexa.testjournal1.databinding.FragmentScheduleBinding;
 import stu.ilexa.testjournal1.ui.change.SubjectChangeFragment;
 
@@ -102,6 +104,47 @@ public class ScheduleFragment extends Fragment implements View.OnClickListener {
         binding.imageButtonWeekNext.setOnClickListener(this);
         binding.imageButtonWeekPrevious.setOnClickListener(this);
         binding.addSubjectFAB.setOnClickListener(this);
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int dayClass=0;
+                switch ((String) view.getTag()) {
+                    case "subjectDisplayed1":
+                        dayClass=0;
+                        break;
+                    case "subjectDisplayed2":
+                       dayClass=1;
+                        break;
+                    case "subjectDisplayed3":
+                        dayClass=2;
+                        break;
+                    case "subjectDisplayed4":
+                        dayClass=3;
+                        break;
+                    case "subjectDisplayed5":
+                        dayClass=4;
+                        break;
+                    case "subjectDisplayed6":
+                        dayClass=5;
+                        break;
+                }
+                if(Schedule.getSchedule()[scheduleViewModel.getSelectedWeek()][scheduleViewModel.getSelectedDay()][dayClass]!=null){
+                Fragment fragment = SubjectFragment.newInstance(scheduleViewModel.getSelectedWeek(),scheduleViewModel.getSelectedDay(),dayClass);
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(getId(), fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                }
+            }
+        };
+
+        binding.textViewSubjectSlot1.setOnClickListener(onClickListener);
+        binding.textViewSubjectSlot2.setOnClickListener(onClickListener);
+        binding.textViewSubjectSlot3.setOnClickListener(onClickListener);
+        binding.textViewSubjectSlot4.setOnClickListener(onClickListener);
+        binding.textViewSubjectSlot5.setOnClickListener(onClickListener);
+        binding.textViewSubjectSlot6.setOnClickListener(onClickListener);
 
         return root;
     }
