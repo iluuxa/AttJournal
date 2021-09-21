@@ -228,9 +228,6 @@ public class DateControl {
     }
 
     public static void setBigBreakAfterClass(Integer[] bigBreakAfterClass) {
-        for (int i = 0; i < bigBreakAfterClass.length; i++) {
-            bigBreakAfterClass[i]--;
-        }
         DateControl.bigBreakAfterClass = bigBreakAfterClass;
     }
 }

@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
             Schedule.importSaveData(gson.fromJson(schedule, Subject[][][].class));
         }
         if (!bigBreakAfter.equals("")) {
-            DateControl.importSaveData(saveData.getInt("FirstDay", 0),
-                    saveData.getInt("FirstMonth", 0),
-                    saveData.getInt("FirstYear", 0),
-                    saveData.getInt("ClassBeginningHour", 0),
+            DateControl.importSaveData(saveData.getInt("FirstDay", 1),
+                    saveData.getInt("FirstMonth", 9),
+                    saveData.getInt("FirstYear", 2021),
+                    saveData.getInt("ClassBeginningHour", 9),
                     saveData.getInt("ClassBeginningMinute", 0),
-                    saveData.getInt("BreakDurationMinute", 0),
-                    saveData.getInt("BigBreakDurationMinute", 0),
-                    saveData.getInt("ClassDuration", 0),
+                    saveData.getInt("ClassDuration", 90),
+                    saveData.getInt("BreakDurationMinute", 10),
+                    saveData.getInt("BigBreakDurationMinute", 30),
                     gson.fromJson(bigBreakAfter, Integer[].class));
         }
 
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
                 R.id.nav_gallery,
@@ -131,10 +132,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openHelpPage(MenuItem item) {
-        /*Fragment fragment = HelpFragment.newInstance();
+        Fragment fragment = HelpFragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.nav_host_fragment_container, fragment);
+        transaction.add(R.id.nav_host_fragment_content_main, fragment);
         transaction.addToBackStack(null);
-        transaction.commit();*/
+        transaction.commit();
     }
+
+
+
 }

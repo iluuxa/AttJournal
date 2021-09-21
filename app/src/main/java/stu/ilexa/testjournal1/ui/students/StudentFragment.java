@@ -64,43 +64,48 @@ public class StudentFragment extends Fragment {
             if (studentAdded) {
                 student = new Student();
             }
-            if (isFilled(binding.lastNameText))
+            if (isFilled(binding.lastNameText)) {
                 student.setLastName(binding.lastNameText.getText().toString());
+            }
             else {
                 insufficientInputAlert();
-                if(studentAdded){
-                    student=null;
+                if (studentAdded) {
+                    student = null;
                 }
                 return;
             }
-            if (isFilled(binding.firstNameText))
+            if (isFilled(binding.firstNameText)) {
                 student.setFirstName(binding.firstNameText.getText().toString());
+            }
             else {
                 insufficientInputAlert();
-                if(studentAdded){
-                    student=null;
+                if (studentAdded) {
+                    student = null;
                 }
                 return;
             }
-            if (isFilled(binding.patrynomicText))
+            if (isFilled(binding.patrynomicText)) {
                 student.setPatronymic(binding.patrynomicText.getText().toString());
+            }
             else {
                 insufficientInputAlert();
-                if(studentAdded){
-                    student=null;
+                if (studentAdded) {
+                    student = null;
                 }
                 return;
             }
             try {
                 if (isFilled(binding.orderNumber)) {
-                    if (Group.orderIsOccupied(Integer.parseInt(binding.orderNumber.getText().toString())) >= 0) {
+                    if (Group.orderIsOccupied(Integer.parseInt(binding.orderNumber.getText().toString())) >=
+                            0) {
                         wrongOrderAlert(Group.orderIsOccupied(Integer.parseInt(binding.orderNumber.getText().toString())));
                         binding.orderNumber.setText("");
                         if (studentAdded) {
                             student = null;
                         }
                         return;
-                    } else {
+                    }
+                    else {
                         student.setOrder(Integer.parseInt(binding.orderNumber.getText().toString()));
                     }
                 }
@@ -115,7 +120,8 @@ public class StudentFragment extends Fragment {
             }
             if (studentAdded) {
                 Group.add(student);
-            } else {
+            }
+            else {
                 Group.groupSort();
             }
             getParentFragmentManager().popBackStack();
@@ -131,9 +137,13 @@ public class StudentFragment extends Fragment {
                 public void onClick(View view) {
                     new AlertDialog.Builder(getContext())
                             .setTitle(getResources().getString(R.string.student_delete_alert))
-                            .setMessage("Вы точно хотите удалить студента "+student.getName()+"? Это действие нельзя будет отменить.")
-                            .setPositiveButton(android.R.string.yes,(dialog,which) -> {
-                                if(student!=null){Group.remove(student);}
+                            .setMessage("Вы точно хотите удалить студента " +
+                                    student.getName() +
+                                    "? Это действие нельзя будет отменить.")
+                            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                                if (student != null) {
+                                    Group.remove(student);
+                                }
                                 getParentFragmentManager().popBackStack();
                             })
                             .setNegativeButton(android.R.string.no, null)
@@ -141,8 +151,8 @@ public class StudentFragment extends Fragment {
                             .show();
                 }
             });
-            binding.studentChangeFab.show();
-            binding.studentDeleteFab.setOnClickListener(fab -> {
+            binding.studentDeleteFab.show();
+            binding.studentChangeFab.setOnClickListener(fab -> {
 
                 setHints();
                 binding.studentDeleteFab.hide();
@@ -153,7 +163,7 @@ public class StudentFragment extends Fragment {
                 binding.telephoneNumber.setEnabled(true);
                 binding.emailText.setEnabled(true);
                 //binding.studentChangeFab.setVisibility(View.INVISIBLE);
-                binding.studentChangeFab.hide();
+                binding.studentDeleteFab.hide();
                 binding.saveButton.setVisibility(View.VISIBLE);
                 binding.saveButton.setOnClickListener(saveButtonListener);
             });
@@ -176,7 +186,8 @@ public class StudentFragment extends Fragment {
             setDisabled(binding.orderNumber);
             setDisabled(binding.telephoneNumber);
             setDisabled(binding.emailText);
-        } else {
+        }
+        else {
             binding.saveButton.setVisibility(View.VISIBLE);
             binding.saveButton.setOnClickListener(saveButtonListener);
             binding.studentChangeFab.hide();
@@ -220,7 +231,9 @@ public class StudentFragment extends Fragment {
     private void wrongOrderAlert(int collision) {
         new AlertDialog.Builder(getContext())
                 .setTitle(getResources().getString(R.string.student_wrong_order_input))
-                .setMessage("Этот порядковый номер уже занят студентом " + Group.getGroup()[collision].getName() + ". Введите другой номер или измените номер указанного студента")
+                .setMessage("Этот порядковый номер уже занят студентом " +
+                        Group.getGroup()[collision].getName() +
+                        ". Введите другой номер или измените номер указанного студента")
                 .setNeutralButton(android.R.string.ok, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();

@@ -136,6 +136,9 @@ public class DateControlFragment extends Fragment {
                     shift++;
                 }
             }
+            for (int i = 0; i < list.size(); i++) {
+                list.set(i, list.get(i)-1);
+            }
             DateControl.setBigBreakAfterClass(list.toArray(new Integer[0]));
             binding.bigBreakAfterEditText.setText(DateControl.getBigBreaksString());
 
