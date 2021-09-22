@@ -23,6 +23,19 @@ public class Group {
     }
 
 
+    public static void resetAttendance(){
+        for (int i = 0; i < group.length; i++) {
+            for (int j = 0; j < Schedule.weekCount; j++) {
+                for (int k = 0; k < Schedule.dayCount; k++) {
+                    for (int l = 0; l < Schedule.classCount; l++) {
+                        group[i].setAttendance(j,k,l,false);
+                    }
+                }
+            }
+        }
+    }
+
+
     public static void groupLexSort()
     {
         Arrays.sort(group);

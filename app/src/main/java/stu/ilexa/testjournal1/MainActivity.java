@@ -1,6 +1,7 @@
 package stu.ilexa.testjournal1;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +22,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import stu.ilexa.testjournal1.databinding.ActivityMainBinding;
-import stu.ilexa.testjournal1.ui.help.HelpFragment;
 import stu.ilexa.testjournal1.ui.tables.TableFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -132,11 +132,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openHelpPage(MenuItem item) {
-        Fragment fragment = HelpFragment.newInstance();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.nav_host_fragment_content_main, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        Intent myIntent = new Intent(MainActivity.this, HelpActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
 

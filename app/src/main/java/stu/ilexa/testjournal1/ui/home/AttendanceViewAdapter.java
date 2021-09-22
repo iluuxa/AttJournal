@@ -97,7 +97,7 @@ public class AttendanceViewAdapter extends RecyclerView.Adapter<AttendanceViewAd
         private TextView number;
         private LinearLayout linearLayout;
 
-        //TODO: optimize with public Student student;
+
         public ViewHolder(View itemView) {
             super(itemView);
             checkedName = (CheckBox) itemView.findViewById(R.id.attendance_list_item_checkbox);

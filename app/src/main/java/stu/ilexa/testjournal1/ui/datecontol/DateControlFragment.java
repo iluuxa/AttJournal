@@ -60,36 +60,47 @@ public class DateControlFragment extends Fragment {
 
         final TextView firstClassDate = binding.firstClassDate;
         final TextView firstClassTime = binding.firstClassTime;
-        firstClassDate.setText(DateControl.getDateFormat(firstYear,firstMonth,firstDay));
-        firstClassTime.setText(DateControl.minutesToTimeFormat(DateControl.getClassBeginningHour()*60+DateControl.getClassBeginningMinute()));
+        firstClassDate.setText(DateControl.getDateFormat(firstYear, firstMonth, firstDay));
+        firstClassTime.setText(DateControl.minutesToTimeFormat(DateControl.getClassBeginningHour() *
+                60 + DateControl.getClassBeginningMinute()));
         binding.changeDateButton.setOnClickListener(view -> new DatePickerDialog(getContext(),
                 (datePicker, i, i1, i2) -> {
                     firstYear = i;
-                    firstMonth = i1+1;
+                    firstMonth = i1 + 1;
                     firstDay = i2;
-                    firstClassDate.setText(DateControl.getDateFormat(firstYear,firstMonth,firstDay));
+                    firstClassDate.setText(DateControl.getDateFormat(firstYear,
+                            firstMonth,
+                            firstDay));
                 },
                 firstYear,
-                firstMonth-1,
+                firstMonth - 1,
                 firstDay)
                 .show());
         binding.changeTimeButton.setOnClickListener(view -> new TimePickerDialog(getContext(),
                 (timePicker, i, i1) -> {
                     firstHour = i;
                     firstMinute = i1;
-                    firstClassTime.setText(DateControl.minutesToTimeFormat(firstHour*60+firstMinute));
+                    firstClassTime.setText(DateControl.minutesToTimeFormat(firstHour * 60 +
+                            firstMinute));
                 },
                 DateControl.getClassBeginningHour(),
                 DateControl.getClassBeginningMinute(),
-                true )
+                true)
                 .show());
-        binding.eraseScheduleButton.setOnClickListener(view -> new AlertDialog.Builder(getContext())
-                .setTitle(getResources().getString(R.string.student_delete_alert))
-                .setMessage("Вы точно хотите стереть расписание? Это действие нельзя будет отменить.")
-                .setPositiveButton(android.R.string.yes,(dialog,which) -> Schedule.eraseSchedule())
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show());
+        binding.eraseScheduleButton.setOnClickListener(view -> {
+            new AlertDialog.Builder(getContext())
+                    .setTitle(getResources().getString(R.string.student_delete_alert))
+                    .setMessage(
+                            "Вы точно хотите стереть расписание? Это действие нельзя будет отменить.")
+                    .setPositiveButton(android.R.string.yes,
+                            (dialog, which) -> {
+                                Schedule.eraseSchedule();
+                                Group.resetAttendance();
+                            })
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        });
         binding.initButton.setOnClickListener(view -> {
             Group.testInit();
             Schedule.testInit();
@@ -110,16 +121,16 @@ public class DateControlFragment extends Fragment {
             DateControl.setBigBreakDurationMinute(Integer.parseInt(binding.bigBreakTimeEditTextNumber.getText().toString()));
             DateControl.setClassDuration(Integer.parseInt(binding.classDurationEditTextNumber.getText().toString()));
             String breaks = binding.bigBreakAfterEditText.getText().toString();
-            ArrayList<Integer> list= new ArrayList<>();
+            ArrayList<Integer> list = new ArrayList<>();
             boolean sequence = false;
             for (int i = 0; i < breaks.length(); i++) {
-                if((breaks.charAt(i) == ' ')||(breaks.charAt(i) == ',')){
-                    sequence=false;
+                if ((breaks.charAt(i) == ' ') || (breaks.charAt(i) == ',')) {
+                    sequence = false;
                 }
-                else{
+                else {
                     final int parsed = Integer.parseInt(breaks.substring(i, i + 1));
-                    if(sequence){
-                        list.set(list.size()-1, list.get(list.size()-1)*10+ parsed);
+                    if (sequence) {
+                        list.set(list.size() - 1, list.get(list.size() - 1) * 10 + parsed);
                     }
                     else {
                         list.add(parsed);
@@ -129,15 +140,15 @@ public class DateControlFragment extends Fragment {
             }
 
             int shift = 0;
-            for (int i = 0; i < list.size()+shift-1; i++) {
-                Log.d(TAG, "onCreateView: "+list.get(i-shift)+" "+list.get(i+1-shift));
-                if (list.get(i-shift) >= list.get(i+1-shift)){
-                    list.remove(i+1-shift);
+            for (int i = 0; i < list.size() + shift - 1; i++) {
+                Log.d(TAG, "onCreateView: " + list.get(i - shift) + " " + list.get(i + 1 - shift));
+                if (list.get(i - shift) >= list.get(i + 1 - shift)) {
+                    list.remove(i + 1 - shift);
                     shift++;
                 }
             }
             for (int i = 0; i < list.size(); i++) {
-                list.set(i, list.get(i)-1);
+                list.set(i, list.get(i) - 1);
             }
             DateControl.setBigBreakAfterClass(list.toArray(new Integer[0]));
             binding.bigBreakAfterEditText.setText(DateControl.getBigBreaksString());
@@ -146,7 +157,6 @@ public class DateControlFragment extends Fragment {
 
         return root;
     }
-
 
 
 }
