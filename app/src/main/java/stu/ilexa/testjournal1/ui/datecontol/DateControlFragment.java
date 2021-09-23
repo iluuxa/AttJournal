@@ -56,6 +56,8 @@ public class DateControlFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDateControlBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        binding.initButton.setVisibility(View.GONE);
+        binding.initButton.setEnabled(false);
 
 
         final TextView firstClassDate = binding.firstClassDate;

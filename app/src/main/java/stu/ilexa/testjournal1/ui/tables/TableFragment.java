@@ -36,6 +36,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import stu.ilexa.testjournal1.DateControl;
 import stu.ilexa.testjournal1.Group;
 import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.Schedule;
@@ -88,6 +89,7 @@ public class TableFragment extends Fragment {
         binding.tableSubjectName.setBackground(border);
         ArrayList<int[]> dates = Schedule.getSubjectDates(subject);
         ArrayList<int[]> index = Schedule.getSubjectIndex(subject);
+        int shift =0;
 
         for (int i = 0; i < dates.size(); i++) {
             Log.d(TAG, "onCreateView: "+dates.get(i)[0]+"."+dates.get(i)[1]+"   "+index.get(i)[0]+index.get(i)[1]+index.get(i)[2]);
@@ -96,11 +98,17 @@ public class TableFragment extends Fragment {
             //AttributeSet attributeSet
             TextView textView = new TextView(getContext());
             textView.setPadding(5,0,5,0);
-            String x =""+dates.get(i)[0]+"."+dates.get(i)[1];
-            Log.d(TAG, "onCreateView: "+x);
-            textView.setText(x);
-            textView.setBackground(border);
-            binding.datesRow.addView(textView);
+            if ((dates.get(i)[1]> DateControl.getFirstMonth()) ||((dates.get(i)[1]==DateControl.getFirstMonth())&&(dates.get(i)[0]>=DateControl.getFirstDay()))) {
+
+                String x = "" + dates.get(i)[0] + "." + dates.get(i)[1];
+                Log.d(TAG, "onCreateView: " + x);
+                textView.setText(x);
+                textView.setBackground(border);
+                binding.datesRow.addView(textView);
+            }
+            else {
+                shift++;
+            }
         }
 
         for (int i = 0; i < Group.getGroup().length; i++) {
@@ -110,9 +118,9 @@ public class TableFragment extends Fragment {
             textView.setText(student.getName());
             textView.setBackground(border);
             tableRow.addView(textView);
-            for (int j = 0; j < index.size(); j++) {
+            for (int j = 0; j < index.size()-shift; j++) {
                 TextView childTextView = new TextView(getContext());
-                childTextView.setText(student.getAttendance(index.get(j)[0],index.get(j)[1],index.get(j)[2])?"+":"-");
+                childTextView.setText(student.getAttendance(index.get(j+shift)[0],index.get(j+shift)[1],index.get(j+shift)[2])?"+":"-");
                 childTextView.setBackground(border);
                 childTextView.setGravity(Gravity.CENTER);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -157,13 +165,21 @@ public class TableFragment extends Fragment {
                         attendanceCell.setCellValue(student.getAttendance(index.get(j)[0],index.get(j)[1],index.get(j)[2])?"+":"-");
                     }
                 }
-                File filePath = new File(Environment.getExternalStorageDirectory()+"/Demo.xls");
+                File filePath = new File(requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)+"/"+subject.getFullName()+".xls");
 
                 Log.d(TAG, "onClick: "+filePath);
                 try {
                     if (!filePath.exists()){
                         filePath.createNewFile();
                     }
+                    else{
+                        filePath = new File(requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)+"/"+subject.getFullName()+"("+1+").xls");
+                        for (int i = 2;filePath.exists(); i++) {
+                            filePath = new File(requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)+"/"+subject.getFullName()+"("+i+").xls");
+                        }
+                        filePath.createNewFile();
+                    }
+                    Log.d(TAG, "onClick: "+filePath);
                     FileOutputStream fileOutputStream= new FileOutputStream(filePath);
                     workbook.write(fileOutputStream);
 
