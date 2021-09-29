@@ -98,6 +98,18 @@ public class Schedule{
 
     }
 
+    public static int hasSubject(String name){
+        int i = 0;
+        for (Subject subject : subjects){
+            if(subject.getName().equals(name)){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+
+    }
+
     public static void testInit(){
         eraseSchedule();
         Subject subj1=new Subject("Основы сетевых технологий", false);

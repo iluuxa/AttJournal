@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import stu.ilexa.testjournal1.DateControl;
 import stu.ilexa.testjournal1.R;
 import stu.ilexa.testjournal1.Schedule;
+import stu.ilexa.testjournal1.Subject;
 import stu.ilexa.testjournal1.databinding.FragmentSubjectBinding;
 
 
@@ -68,6 +69,11 @@ public class SubjectFragment extends Fragment {
 
         binding.subjectChangeConfirmButton.setOnClickListener(view -> {
             if(binding.subjectNameTextEdit.getText()!=null){
+                String name = binding.subjectNameTextEdit.getText().toString();
+                int col = Schedule.hasSubject(name);
+                if(col>-1){
+                    Schedule.getSchedule()[week][day][dayClass]=Schedule.getSubjects().toArray(new Subject[0])[col];
+                }
                 Schedule.getSchedule()[week][day][dayClass].setName(binding.subjectNameTextEdit.getText().toString());
                 displayTime();
                 binding.subjectDeleteFab.show();
