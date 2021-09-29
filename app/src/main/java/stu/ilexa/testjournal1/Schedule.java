@@ -69,9 +69,8 @@ public class Schedule{
         for (int i = 0; i < Schedule.weekCount; i++) {
             for (int j = 0; j < Schedule.dayCount; j++) {
                 for (int k = 0; k < Schedule.classCount; k++) {
-                    if (subject == schedule[i][j][k]) {
+                    if (subject.equals(schedule[i][j][k])) {
                         tempWeeks[i] = true;
-                        break;
                     }
                 }
             }

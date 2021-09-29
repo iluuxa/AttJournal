@@ -47,7 +47,7 @@ public class SubjectChangeFragment extends Fragment implements View.OnClickListe
         binding = SubjectChangeFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Object[] objects = Schedule.getSubjects().toArray();
+        Subject[] objects = Schedule.getSubjects().toArray(new Subject[0]);
         String[] list = new String[objects.length];
         for (int i = 0; i < objects.length; i++) {
             list[i] = ((Subject) (objects[i])).getName();
